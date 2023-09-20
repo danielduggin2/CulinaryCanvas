@@ -1,0 +1,62 @@
+{%extends "base.html"%} {% block title%}Home{%endblock%} {%block content%}
+<h1 align="center">{{user.first_name}}'s Home</h1>
+<form>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Recipe Title</label>
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Description</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+
+
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Ingredients</label>
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+    <button class="btn btn-primary">Add Ingredient</button>
+    <button class="btn btn-primary">Add Header</button>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Directions</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <button class="btn btn-primary">Add Step</button>
+    <button class="btn btn-primary">Add Header</button>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Servings</label>
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+    <label for="exampleFormControlInput1">Yield</label>
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+  </div>
+  
+
+
+
+  <div class="form-group">
+    <label for="amountinput">Prep Time</label>
+    <input type="number" min="0" step="1" class="form-control" id="amountinput">
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>mins</option>
+      <option>hours</option>
+      <option>days</option>
+    </select>
+    <label for="amountinput2">Cook Time</label>
+    <input type="number" min="0" step="1" class="form-control" id="amountinput2">
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>mins</option>
+      <option>hours</option>
+      <option>days</option>
+    </select>
+
+  </div>
+ <div class="form-group">
+    <label for="exampleFormControlTextarea1">Notes</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+
+</form>
+{%endblock%}
