@@ -1,0 +1,152 @@
+/* Reset some default browser styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* NAV BAR EDITS START */
+header {
+  background-color: #2C2D31;
+  color: #F0F8FF;
+  padding: 25px 10px; /* add padding to left and right */
+  width: 100%;
+  text-align: right;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* add shadow to the header */
+  z-index: 1; /* make sure it's on top of other elements */
+  position: fixed;
+}
+
+
+nav{
+  width: 95%;
+  margin: 0 auto;
+  display: block;
+}
+nav li:first-child {
+  float: left;
+  margin-left: 20px;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+}
+
+nav li {
+  display: inline-block;
+  margin-right: 40px;
+  font-family: Arial, sans-serif;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 665px) {
+    nav ul {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    nav li {
+      margin: 10px 0;
+      display: block;
+      text-align: center;
+    }
+    nav li:first-child {
+      float: none;
+      margin-left: 0;
+    }
+
+    header{
+        position: relative;
+    }
+  }
+
+/* NAVBAR EDITS END */
+
+/* Add some basic styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: cadetblue; /* Use CSS variable for background color */
+  display: flex;
+  flex-direction: column; /* Ensure header is above cards */
+  align-items: center; /* Center horizontally */
+  min-height: 100vh; /* Full viewport height */
+  margin: 0; /* Remove default body margin */
+  padding: 0; /* Remove default body padding */
+}
+
+.header-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.recipe-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px; /* Add spacing between header and cards */
+  margin-top: 80px;
+}
+
+.recipe-card {
+  background-color: #2C2D31; /* White background */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Slightly darker shadow */
+  margin: 20px;
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+  border-radius: 15px; /* Increased border radius */
+}
+
+.recipe-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 15px; /* Increased border radius */
+}
+
+.recipe-details ul {
+  list-style-type: none;
+  padding: 0;
+  border-bottom: 1px solid cadetblue;
+  margin-bottom: 10px;
+}
+
+.recipe-details ul li {
+  margin: 5px 0;
+  color: #F0F8FF;
+}
+
+.recipe-description {
+  margin-top: 10px;
+  color: #F0F8FF;
+}
+
+.save-button,
+.info-button {
+  display: inline-block;
+  margin: 10px 5px;
+  padding: 10px 20px;
+  background-color: cadetblue; /* Green */
+  color: #F0F8FF;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.save-button:hover,
+.info-button:hover {
+  background-color: cadetblue; /* Darker green on hover */
+}
+
