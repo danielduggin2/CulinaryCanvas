@@ -1,5 +1,5 @@
-[
-    {
+{"recipes" : [
+  {
       "recipe_name": "Spaghetti Carbonara",
       "instructions": [
         "Step 1: Cook spaghetti in a large pot of salted boiling water until al dente.",
@@ -232,4 +232,4 @@
       
     
   ]
-  
+} 

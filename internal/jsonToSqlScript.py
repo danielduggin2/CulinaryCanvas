@@ -1,10 +1,10 @@
 import json
 
 #open json file
-recipe_json = open("CulinaryCanvas/website/internal/recipe.json", "r").read()
+recipe_json = open("CulinaryCanvas/internal/recipe.json", "r").read()
 
 #open sql file
-f = open("CulinaryCanvas/website/internal/populateRecipes.sql", "w",encoding='utf-8')
+f = open("CulinaryCanvas/internal/populateRecipes.sql", "w",encoding='utf-8')
 
 
 script_string = '''INSERT INTO recipe (user_id,name,instructions,hours_to_make,minutes_to_make,calories,description,image,ingredients,category_id)
