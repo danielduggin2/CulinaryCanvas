@@ -130,7 +130,106 @@
           "Salt and pepper to taste",
           "1 egg, beaten (for brushing)"
         ]
+      },
+
+      {
+        "recipe_name": "Chicken and Waffles",
+        "instructions": [
+          "Step 1: Preheat your waffle iron according to the manufacturer's instructions.",
+          "Step 2: In a mixing bowl, combine all-purpose flour, sugar, baking powder, and salt.",
+          "Step 3: In a separate bowl, whisk together eggs, buttermilk, and melted butter.",
+          "Step 4: Pour the wet ingredients into the dry ingredients and stir until just combined.",
+          "Step 5: Pour the waffle batter into the preheated waffle iron and cook until golden and crisp.",
+          "Step 6: While the waffles are cooking, season chicken pieces with salt, black pepper, and paprika.",
+          "Step 7: Heat oil in a skillet and fry the chicken until it's crispy and cooked through.",
+          "Step 8: Serve the fried chicken on top of the freshly cooked waffles.",
+          "Step 9: Drizzle with maple syrup and garnish with chopped parsley."
+        ],
+        "time": "30 minutes",
+        "calories": "600 calories per serving",
+        "description": "Chicken and Waffles is a classic Southern dish that combines crispy fried chicken with fluffy waffles, topped with sweet maple syrup.",
+        "image": "https://example.com/images/chicken_and_waffles.jpg",
+        "ingredients": [
+          "1 cup all-purpose flour",
+          "2 tablespoons sugar",
+          "1 teaspoon baking powder",
+          "1/2 teaspoon salt",
+          "2 large eggs",
+          "1 cup buttermilk",
+          "2 tablespoons melted butter",
+          "4 boneless, skinless chicken thighs",
+          "Salt, black pepper, and paprika to taste",
+          "Vegetable oil for frying",
+          "Maple syrup for drizzling",
+          "Chopped parsley for garnish"
+        ]
+      },
+
+      {
+        "recipe_name": "Eggs Benedict",
+        "instructions": [
+          "Step 1: Fill a saucepan with a few inches of water and bring it to a simmer.",
+          "Step 2: In a heatproof bowl, whisk together egg yolks, lemon juice, and a pinch of cayenne pepper.",
+          "Step 3: Place the bowl over the simmering water (double boiler) and whisk continuously until the mixture thickens to form a hollandaise sauce. Remove from heat and keep warm.",
+          "Step 4: In a separate saucepan, melt butter over low heat. Skim off and discard the white milk solids from the surface, leaving clarified butter. Keep it warm.",
+          "Step 5: In a skillet, bring water to a gentle simmer and add white vinegar. Create a whirlpool in the water using a spoon and gently slide in an egg. Poach the egg for about 3-4 minutes until the white is set and the yolk is still runny. Repeat for each egg.",
+          "Step 6: Toast English muffin halves until lightly browned.",
+          "Step 7: Place a slice of Canadian bacon on each muffin half, followed by a poached egg.",
+          "Step 8: Spoon hollandaise sauce generously over each egg.",
+          "Step 9: Garnish with chopped chives or parsley.",
+          "Step 10: Serve immediately and enjoy!"
+        ],
+        "time": "20 minutes",
+        "calories": "400 calories per serving",
+        "description": "Eggs Benedict is a classic brunch dish featuring poached eggs, Canadian bacon, and hollandaise sauce served on toasted English muffins.",
+        "image": "https://example.com/images/eggs_benedict.jpg",
+        "ingredients": [
+          "4 large egg yolks",
+          "1 tablespoon lemon juice",
+          "A pinch of cayenne pepper",
+          "1/2 cup (1 stick) unsalted butter",
+          "2 teaspoons white vinegar",
+          "4 large eggs",
+          "2 English muffins, split and toasted",
+          "4 slices Canadian bacon",
+          "Chopped chives or parsley for garnish"
+        ]
+      },
+
+      {
+        "recipe_name": "Breakfast Burritos",
+        "instructions": [
+          "Step 1: In a skillet, cook ground breakfast sausage over medium heat until browned and crumbled. Drain excess fat.",
+          "Step 2: Add diced onions, bell peppers, and minced garlic to the skillet. Cook until the vegetables are tender.",
+          "Step 3: In a bowl, whisk together eggs, salt, and black pepper. Pour the egg mixture into the skillet with the sausage and vegetables.",
+          "Step 4: Cook, stirring occasionally, until the eggs are scrambled and fully cooked.",
+          "Step 5: Warm the flour tortillas in a dry skillet or microwave until pliable.",
+          "Step 6: Place a portion of the egg and sausage mixture in the center of each tortilla.",
+          "Step 7: Sprinkle shredded cheese over the egg mixture and drizzle with hot sauce (if desired).",
+          "Step 8: Fold in the sides of the tortilla and then roll it up tightly to form a burrito.",
+          "Step 9: Serve the breakfast burritos with salsa and sour cream on the side.",
+          "Step 10: Enjoy your delicious breakfast burritos!"
+        ],
+        "time": "20 minutes",
+        "calories": "350 calories per burrito",
+        "description": "Breakfast Burritos are a satisfying morning meal featuring savory sausage, scrambled eggs, and melted cheese wrapped in a warm tortilla.",
+        "image": "https://example.com/images/breakfast_burritos.jpg",
+        "ingredients": [
+          "1/2 lb ground breakfast sausage",
+          "1/4 cup diced onions",
+          "1/4 cup diced bell peppers",
+          "2 cloves garlic, minced",
+          "6 large eggs",
+          "Salt and black pepper to taste",
+          "4 large flour tortillas",
+          "1 cup shredded cheddar cheese",
+          "Hot sauce (optional)",
+          "Salsa and sour cream for serving"
+        ]
       }
+      
+      
+      
     
   ]
   

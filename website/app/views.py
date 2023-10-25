@@ -7,10 +7,17 @@ views = Blueprint("views", __name__)
 def root():
     return render_template("login.html")
 
+
 # START: Define a route for the HTML pages
 @views.route("/home")
 def home():
     return render_template("home.html")
+
+
+# Oct 25 - Added Route for About Page
+@views.route("/about")
+def about():
+    return render_template("about.html")
 
 
 @views.route("/reviews")
@@ -39,7 +46,6 @@ def login():
         session["user"] = username
 
         # Redirect to the "home" route after successful login.
-        return redirect(url_for("home"))
+        return redirect(url_for("views.home"))
     else:
         return "Login failed"
-
