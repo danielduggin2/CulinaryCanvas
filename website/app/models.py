@@ -44,14 +44,14 @@ class User(db.Model, UserMixin):
 
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key = True)
-    name = password=db.Column(db.String(30))
+    name = db.Column(db.String(30))
     #ASSOCIATIONS
     recipes = db.relationship('Recipes', backref='category', lazy=True)
 
 
 class Review(db.Model):
-    recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'))
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'),primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'),primary_key=True)
     stars = db.Column(db.Integer)
     review = db.Column(db.String(120))
     #BACKREF ASSOCIATIONS
