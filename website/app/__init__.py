@@ -15,7 +15,6 @@ def create_app():
     load_dotenv()
     # Set Secret Key to SECRET_KEY from .env
     SECRET_KEY = os.getenv("SECRET_KEY")
-    print(SECRET_KEY)
     app.config["SECRET_KEY"] = SECRET_KEY
 
     # Set DB Name to DB_NAME from .env
