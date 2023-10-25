@@ -1,4 +1,6 @@
-from flask import Blueprint, render_template, redirect, url_for, request, session
+from flask import Blueprint, render_template, redirect, url_for, request, session, jsonify
+from .models import Recipe
+from . import db
 
 views = Blueprint("views", __name__)
 
@@ -11,7 +13,25 @@ def root():
 # START: Define a route for the HTML pages
 @views.route("/home")
 def home():
-    return render_template("home.html")
+    recipe_query=db.session.query(Recipe).all()
+    recipe_json = {"recipes":[]}
+    for i,recipe in enumerate(recipe_query):
+        thisdict = {
+            "id": recipe.id,
+            "user_id": recipe.user_id,
+            "name": recipe.name,
+            "instructions": recipe.instructions,
+            "hours": recipe.hours_to_make,
+            "minutes": recipe.minutes_to_make,
+            "calories": recipe.calories,
+            "description": recipe.description,
+            "image": recipe.image,
+            "ingredients": recipe.ingredients,
+            "category_id": recipe.category_id,
+        }
+        recipe_json["recipes"].append(thisdict)
+    print(recipe_json)
+    return render_template("home.html",recipes=recipe_json)
 
 
 # Oct 25 - Added Route for About Page
