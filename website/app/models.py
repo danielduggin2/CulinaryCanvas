@@ -49,7 +49,7 @@ class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30))
     # ASSOCIATIONS
-    recipes = db.relationship("Recipes", backref="category", lazy=True)
+    recipes = db.relationship("Recipe", backref="category", lazy=True)
 
 
 class Review(db.Model):
