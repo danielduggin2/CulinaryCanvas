@@ -15,13 +15,13 @@ rel_favorites_User_Recipe = db.Table(
 class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    instructions = db.Column(db.String(1000)) #instructions will be delimited by \~
+    instructions = db.Column(db.String(1000)) #instructions will be delimited by ¦
     hours_to_make = db.Column(db.Integer)
     minutes_to_make = db.Column(db.Integer) #Time Formatting? HH:MM
     calories = db.Column(db.Integer)
     description = db.Column(db.String(1000))
     image = db.Column(db.String(200))
-    ingredients = db.Column(db.String(1000)) #ingredients will be delimited by \~
+    ingredients = db.Column(db.String(1000)) #ingredients will be delimited by ¦
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
     #ASSOCIATIONS
     reviews = db.relationship('Review', backref='recipe', lazy=True)
