@@ -15,6 +15,7 @@ rel_favorites_User_Recipe = db.Table(
 class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    name = db.Column(db.String(50))
     instructions = db.Column(db.String(1000)) #instructions will be delimited by ¦
     hours_to_make = db.Column(db.Integer)
     minutes_to_make = db.Column(db.Integer) #Time Formatting? HH:MM
