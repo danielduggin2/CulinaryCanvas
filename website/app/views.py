@@ -9,7 +9,6 @@ views = Blueprint("views", __name__)
 def root():
     return render_template("login.html")
 
-
 # START: Define a route for the HTML pages
 @views.route("/home")
 def home():
