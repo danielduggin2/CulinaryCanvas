@@ -14,7 +14,6 @@ def root():
 def home():
     #query for all recipes
     recipe_query=db.session.query(Recipe).all()
-    print(recipe_query)
     #create dictionary ready to store array of recipes
     recipe_json = {"recipes":[]}
 
