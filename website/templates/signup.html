@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #D5C1B9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('C:\Users\14235\Downloads\your-image.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .light-input {
+            background-color: ##FCF8F5;  /* This is a sample lighter shade; adjust as needed */
+        }
+        
+        .login-container {
+            background-color: #EDE7E3;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 50%;
+        }
+
+        h2 {
+            text-align: center;
+            color: #8B6B61;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 90%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #EDE7E3;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+
+        button {
+            background-color: #8B6B61;
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #A1887F;
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 15px;
+            color: #8B6B61;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>Sign up</h2>
+        <form method="POST" action="/signup">
+            <input type="text" class="light-input" name="first_name" placeholder="First Name" required>
+            <input type="text" class="light-input" name="last_name" placeholder="Last Name" required>
+            <input type="text" class="light-input" name="username" placeholder="Username" required>
+            <input type="email" class="light-input" name="email" placeholder="Email" required>
+            <input type="password" class="light-input" name="password" placeholder="Create Password" required>            
+            <button type="submit">Sign up</button>
+        </form>
+        <div class="signup-link">
+            Already have an account? <a href="/login" style="color: #8B6B61;">Login here</a>
+        </div>
+    </div>
+</body>
+
+</html>
