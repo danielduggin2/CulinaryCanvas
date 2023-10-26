@@ -9,13 +9,17 @@ views = Blueprint("views", __name__)
 def root():
     return render_template("login.html")
 
-
 # START: Define a route for the HTML pages
 @views.route("/home")
 def home():
+    #query for all recipes
     recipe_query=db.session.query(Recipe).all()
+
+    #create dictionary ready to store array of recipes
     recipe_json = {"recipes":[]}
-    for i,recipe in enumerate(recipe_query):
+
+    #iterate through recipe_query, and assign db values to dictionary values for frontend
+    for recipe in recipe_query:
         thisdict = {
             "id": recipe.id,
             "user_id": recipe.user_id,
@@ -29,7 +33,9 @@ def home():
             "ingredients": recipe.ingredients,
             "category_id": recipe.category_id,
         }
+        #append dicionary to list in recipes dictionary
         recipe_json["recipes"].append(thisdict)
+    
     print(recipe_json)
     return render_template("home.html",recipes=recipe_json)
 
