@@ -1,176 +1,155 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="../static/styles.css" />
-    <title>Recipe Booklet</title>
-  </head>
-  <body>
-    <!-- HEADER  START-->
-    <header id="top">
-      <nav>
-        <ul>
-          <li><a href="/home">Culinary Canvas</a></li>
-          <li><a href="/about">About Us</a></li>
-          <li><a href="">Favorites</a></li>
-          <li><a href="/reviews">Reviews</a></li>
-          <li class="profile-icon" a href=""></li>
-        </ul>
-      </nav>
-    </header>
-    <!-- HEADER END -->
+{%extends "base.html"%} {%block content%}
+<form method="POST"></form>
 
-    <div class="recipe-container">
-      <!-- Recipe 1 -->
-      <div class="recipe-card">
-        <img src="recipe1.jpg" alt="Recipe 1" />
-        <div class="recipe-details">
-          <ul>
-            <li>Time: 30 minutes</li>
-            <li>Servings: 4</li>
-            <li>Calories: 250</li>
-          </ul>
-        </div>
-        <p class="recipe-description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut
-          magna sit amet tortor.
-        </p>
-        <button class="save-button">Save Recipe</button>
-        <button class="info-button">More Info</button>
-      </div>
-      <!-- End Recipe 1 -->
-
-      <!-- Recipe 2 -->
-      <div class="recipe-card">
-        <img src="recipe2.jpg" alt="Recipe 2" />
-        <div class="recipe-details">
-          <ul>
-            <li>Time: 45 minutes</li>
-            <li>Servings: 6</li>
-            <li>Calories: 300</li>
-          </ul>
-        </div>
-        <p class="recipe-description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut
-          magna sit amet tortor.
-        </p>
-        <button class="save-button">Save Recipe</button>
-        <button class="info-button">More Info</button>
-      </div>
-      <!-- End Recipe 2 -->
-
-      <!-- Recipe 3 -->
-      <div class="recipe-card">
-        <img src="recipe3.jpg" alt="Recipe 3" />
-        <div class="recipe-details">
-          <ul>
-            <li>Time: 30 minutes</li>
-            <li>Servings: 4</li>
-            <li>Calories: 250</li>
-          </ul>
-        </div>
-        <p class="recipe-description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut
-          magna sit amet tortor.
-        </p>
-        <button class="save-button">Save Recipe</button>
-        <button class="info-button">More Info</button>
-      </div>
-
-      <!-- Recipe 4 -->
-      <div class="recipe-card">
-        <img src="recipe4.jpg" alt="Recipe 4" />
-        <div class="recipe-details">
-          <ul>
-            <li>Time: 30 minutes</li>
-            <li>Servings: 4</li>
-            <li>Calories: 250</li>
-          </ul>
-        </div>
-        <p class="recipe-description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut
-          magna sit amet tortor.
-        </p>
-        <button class="save-button">Save Recipe</button>
-        <button class="info-button">More Info</button>
-      </div>
-
-      <!-- Recipe 5 -->
-      <div class="recipe-card">
-        <img src="recipe5.jpg" alt="Recipe 5" />
-        <div class="recipe-details">
-          <ul>
-            <li>Time: 30 minutes</li>
-            <li>Servings: 4</li>
-            <li>Calories: 250</li>
-          </ul>
-        </div>
-        <p class="recipe-description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut
-          magna sit amet tortor.
-        </p>
-        <button class="save-button">Save Recipe</button>
-        <button class="info-button">More Info</button>
-      </div>
-
-      <!-- RECIPE 6 START -->
-      <div class="recipe-card">
-        <img src="recipe6.jpg" alt="Recipe 6" />
-        <div class="recipe-details">
-          <ul>
-            <li>Time: 30 minutes</li>
-            <li>Servings: 4</li>
-            <li>Calories: 250</li>
-          </ul>
-        </div>
-        <p class="recipe-description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut
-          magna sit amet tortor.
-        </p>
-        <button class="save-button">Save Recipe</button>
-        <button class="info-button">More Info</button>
-      </div>
-
-      <!-- RECIPE 6 END -->
-
-      <!-- RECIPE 7 START -->
-      <div class="recipe-card">
-        <img src="recipe6.jpg" alt="Recipe 7" />
-        <div class="recipe-details">
-          <ul>
-            <li>Time: 30 minutes</li>
-            <li>Servings: 4</li>
-            <li>Calories: 250</li>
-          </ul>
-        </div>
-        <p class="recipe-description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut
-          magna sit amet tortor.
-        </p>
-        <button class="save-button">Save Recipe</button>
-        <button class="info-button">More Info</button>
-      </div>
-      <!-- RECIPE 8 END -->
-
-      <!-- RECIPE 8 START -->
-      <div class="recipe-card">
-        <img src="recipe6.jpg" alt="Recipe 8" />
-        <div class="recipe-details">
-          <ul>
-            <li>Time: 30 minutes</li>
-            <li>Servings: 4</li>
-            <li>Calories: 250</li>
-          </ul>
-        </div>
-        <p class="recipe-description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut
-          magna sit amet tortor.
-        </p>
-        <button class="save-button">Save Recipe</button>
-        <button class="info-button">More Info</button>
-      </div>
-      <!-- RECIPE 8 END -->
+<div class="recipe-container">
+  <!-- Recipe 1 -->
+  <div class="recipe-card">
+    <img src="recipe1.jpg" alt="Recipe 1" />
+    <div class="recipe-details">
+      <ul>
+        <li>Time: 30 minutes</li>
+        <li>Servings: 4</li>
+        <li>Calories: 250</li>
+      </ul>
     </div>
-  </body>
-</html>
+    <p class="recipe-description">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut magna
+      sit amet tortor.
+    </p>
+    <button class="save-button">Save Recipe</button>
+    <button class="info-button">More Info</button>
+  </div>
+  <!-- End Recipe 1 -->
+
+  <!-- Recipe 2 -->
+  <div class="recipe-card">
+    <img src="recipe2.jpg" alt="Recipe 2" />
+    <div class="recipe-details">
+      <ul>
+        <li>Time: 45 minutes</li>
+        <li>Servings: 6</li>
+        <li>Calories: 300</li>
+      </ul>
+    </div>
+    <p class="recipe-description">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut magna
+      sit amet tortor.
+    </p>
+    <button class="save-button">Save Recipe</button>
+    <button class="info-button">More Info</button>
+  </div>
+  <!-- End Recipe 2 -->
+
+  <!-- Recipe 3 -->
+  <div class="recipe-card">
+    <img src="recipe3.jpg" alt="Recipe 3" />
+    <div class="recipe-details">
+      <ul>
+        <li>Time: 30 minutes</li>
+        <li>Servings: 4</li>
+        <li>Calories: 250</li>
+      </ul>
+    </div>
+    <p class="recipe-description">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut magna
+      sit amet tortor.
+    </p>
+    <button class="save-button">Save Recipe</button>
+    <button class="info-button">More Info</button>
+  </div>
+
+  <!-- Recipe 4 -->
+  <div class="recipe-card">
+    <img src="recipe4.jpg" alt="Recipe 4" />
+    <div class="recipe-details">
+      <ul>
+        <li>Time: 30 minutes</li>
+        <li>Servings: 4</li>
+        <li>Calories: 250</li>
+      </ul>
+    </div>
+    <p class="recipe-description">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut magna
+      sit amet tortor.
+    </p>
+    <button class="save-button">Save Recipe</button>
+    <button class="info-button">More Info</button>
+  </div>
+
+  <!-- Recipe 5 -->
+  <div class="recipe-card">
+    <img src="recipe5.jpg" alt="Recipe 5" />
+    <div class="recipe-details">
+      <ul>
+        <li>Time: 30 minutes</li>
+        <li>Servings: 4</li>
+        <li>Calories: 250</li>
+      </ul>
+    </div>
+    <p class="recipe-description">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut magna
+      sit amet tortor.
+    </p>
+    <button class="save-button">Save Recipe</button>
+    <button class="info-button">More Info</button>
+  </div>
+
+  <!-- RECIPE 6 START -->
+  <div class="recipe-card">
+    <img src="recipe6.jpg" alt="Recipe 6" />
+    <div class="recipe-details">
+      <ul>
+        <li>Time: 30 minutes</li>
+        <li>Servings: 4</li>
+        <li>Calories: 250</li>
+      </ul>
+    </div>
+    <p class="recipe-description">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut magna
+      sit amet tortor.
+    </p>
+    <button class="save-button">Save Recipe</button>
+    <button class="info-button">More Info</button>
+  </div>
+
+  <!-- RECIPE 6 END -->
+
+  <!-- RECIPE 7 START -->
+  <div class="recipe-card">
+    <img src="recipe6.jpg" alt="Recipe 7" />
+    <div class="recipe-details">
+      <ul>
+        <li>Time: 30 minutes</li>
+        <li>Servings: 4</li>
+        <li>Calories: 250</li>
+      </ul>
+    </div>
+    <p class="recipe-description">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut magna
+      sit amet tortor.
+    </p>
+    <button class="save-button">Save Recipe</button>
+    <button class="info-button">More Info</button>
+  </div>
+  <!-- RECIPE 8 END -->
+
+  <!-- RECIPE 8 START -->
+  <div class="recipe-card">
+    <img src="recipe6.jpg" alt="Recipe 8" />
+    <div class="recipe-details">
+      <ul>
+        <li>Time: 30 minutes</li>
+        <li>Servings: 4</li>
+        <li>Calories: 250</li>
+      </ul>
+    </div>
+    <p class="recipe-description">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut magna
+      sit amet tortor.
+    </p>
+    <button class="save-button">Save Recipe</button>
+    <button class="info-button">More Info</button>
+  </div>
+  <!-- RECIPE 8 END -->
+</div>
+{%endblock%}
