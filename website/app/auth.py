@@ -39,29 +39,37 @@ def sign_up():
     if request.method == 'POST':
         first_name=request.form.get('first_name')
         last_name=request.form.get('last_name')
-        username=request.form.get('username')
+        username_form=request.form.get('username')
         email=request.form.get('email')
         password=request.form.get('password')
         confirm_password=request.form.get('confirm_password')
-        user = User.query.filter_by(email=email).first()
-        if user:
+        user_name = User.query.filter_by(username=username_form).first()
+        user_email = User.query.filter_by(email=email).first()
+
+
+        if user_email:
             print("user exists")
-        #     flash('Email already exists', category='error')
-        # elif len(email) < 4:
-        #     #flash('Email must be greater than 3 characters.', category='error')
-        # elif len(first_name) < 2:
-        #     #flash('Name must be greater than 1 character.', category='error')
-        # elif password1 != password2:
-        #     #flash('Passwords don\'t match', category='error')
-        # elif len(password1) < 7:
-        #     #flash('Password must be at least 7 characters.', category='error')
+            flash('Email already exists', category='error')
+        elif user_name:
+            flash('Username is already taken.', category='error')
+        elif len(username_form) < 4:
+            flash('Username must be greater than 3 characters.', category='error')
+        elif len(email) < 4:
+            flash('Email must be greater than 3 characters.', category='error')
+        elif len(first_name) < 2:
+            flash('Name must be greater than 1 character.', category='error')
+        elif password != confirm_password:
+             flash('Passwords don\'t match', category='error')
+        elif len(password) < 7:
+             flash('Password must be at least 7 characters.', category='error')
         else:
             #add user to db
-            new_user = User(email=email,first_name=first_name,last_name=last_name, password=generate_password_hash(password, method='sha256'),username=username)
+            new_user = User(email=email,first_name=first_name,last_name=last_name, password=generate_password_hash(password, method='sha256'),username=username_form)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
             #flash('Account Created!', category='success')
             return redirect(url_for('views.home'))
+        
             
     return render_template("signup.html", user=current_user)

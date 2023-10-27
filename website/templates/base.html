@@ -114,6 +114,9 @@
           <li class="profile-icon" a href=""></li>
         </ul>
       </nav>
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {%for category, message in messages%} {%if category
+      =='error'%}
     </header>
     <div>{%block content%} {%endblock%}</div>
   </body>
