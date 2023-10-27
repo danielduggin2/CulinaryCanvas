@@ -66,6 +66,7 @@ def login():
     # If the credentials are valid, set up a session to keep the user logged in.
 
     # Example:
+    #Ethan comment here: is below where I need to add the script that runs the queries to pull th usernames and passwords stored in db?
     if username == "example" and password == "password":
         # Here, you can use Flask's built-in session management.
         session["user"] = username
