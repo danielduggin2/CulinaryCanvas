@@ -5,7 +5,7 @@ from flask_login import login_required, current_user
 
 views = Blueprint("views", __name__)
 
-
+#test comment - bri
 @views.route("/")
 @login_required
 def root():
