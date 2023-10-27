@@ -9,7 +9,7 @@ views = Blueprint("views", __name__)
 @views.route("/")
 @login_required
 def root():
-    return render_template("login.html")
+    return render_template("home.html")
 
 # START: Define a route for the HTML pages
 @views.route("/home")
