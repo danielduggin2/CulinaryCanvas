@@ -25,7 +25,8 @@ def login():
     #     else:
     #         flash('Email does not exist', category='error')
             
-    return render_template("ethan.html", user=current_user)
+    return render_template("login.html", user=current_user)
+    #above is the redirect and takes you to the specified webpage on startup. 
 
 # @auth.route('/logout')
 # @login_required
