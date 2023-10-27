@@ -104,7 +104,7 @@ nav a:hover {
 
 /* NAVBAR EDITS END */
 
-/* Add some basic styling */
+/* General Body Code */
 body {
   font-family: Arial, sans-serif;
   background-color: var(--background-color1); /* Use CSS variable for background color */
@@ -180,4 +180,45 @@ body {
 .info-button:hover {
   background-color: var(--background-color3); /* Darker green on hover */
 }
+ /*END HOME/FAVORITES.html */
 
+ /*CODE FOR ABOUT.HTML*/
+ /* Target the h1 element inside the main container */
+div.employees > h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Target the .employee-card elements inside the main container */
+div.employees > .employee-card {
+  display: inline-block;
+  width: 250px;
+  border: 1px solid #ccc;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Target the .profile-image elements inside .employee-card */
+div.employees > .employee-card > .profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 10px;
+  display: block;
+}
+
+/* Target the h2 elements inside .employee-card */
+div.employees > .employee-card > h2 {
+  font-size: 18px;
+}
+
+/* Target the p elements inside .employee-card */
+div.employees > .employee-card > p {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+/*END FOR ABOUT.HTML*/
