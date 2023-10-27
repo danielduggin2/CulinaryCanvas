@@ -104,7 +104,7 @@ nav a:hover {
 
 /* NAVBAR EDITS END */
 
-/* General Body Code */
+/*Code FOR HOME/FAVS  */
 body {
   font-family: Arial, sans-serif;
   background-color: var(--background-color1); /* Use CSS variable for background color */
