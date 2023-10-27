@@ -1,16 +1,10 @@
 {%extends "base.html"%} {%block content%}
-<form method="POST"></form>
-
+<form action="POST"></form>
+<div class="recipe-container"></div>
 <div class="recipe-container">
-  <!-- Recipe 1:
-       NOTE: The image is hard coded. 
-       When we start findig more for each recipe, 
-       we will need to make sure they are: 4991 × 2807 pixels-->
+  <!-- Recipe 1 -->
   <div class="recipe-card">
-    <img
-      src="../static/Images/chicken-and-waffle.webp"
-      alt="chicken-and-waffle"
-    />
+    <img src="recipe1.jpg" alt="Recipe 1" />
     <div class="recipe-details">
       <ul>
         <li>Time: 30 minutes</li>
@@ -18,7 +12,10 @@
         <li>Calories: 250</li>
       </ul>
     </div>
-    <p class="recipe-description">Chicken and waffles</p>
+    <p class="recipe-description">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut magna
+      sit amet tortor.
+    </p>
     <button class="save-button">Save Recipe</button>
     <button class="info-button">More Info</button>
   </div>
