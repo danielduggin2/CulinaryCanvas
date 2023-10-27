@@ -26,7 +26,7 @@ def login():
     #         flash('Email does not exist', category='error')
             
     return render_template("login.html", user=current_user)
-    #above is the redirect and takes you to the specified webpage on startup. 
+    #above is the redirect and takes you to the specified webpage on startup. port is set to 5555 for (ethan) at the moment in main. 
 
 # @auth.route('/logout')
 # @login_required
