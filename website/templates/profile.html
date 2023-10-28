@@ -1,0 +1,57 @@
+{%extends "base.html"%} {%block content%}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .profile-card {
+        width: 300px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    .profile-image {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .profile-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 50%;
+    }
+
+    .profile-info {
+        padding: 10px;
+    }
+
+    .profile-username {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .profile-email {
+        color: #666;
+    }
+</style>
+</head>
+<body>
+<div class="profile-card">
+    <div class="profile-image">
+        <img src="your-profile-image.jpg" alt="User Profile Image">
+    </div>
+    <div class="profile-info">
+        <div class="profile-username">JohnDoe</div>
+        <div class="profile-email">johndoe@example.com</div>
+    </div>
+</div>
+{%endblock%}

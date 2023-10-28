@@ -73,6 +73,13 @@ def create():
     return render_template("create.html")
 
 
+# route for profile (profile icon is the button for it)
+@views.route("/profile")
+@login_required
+def profile():
+    return render_template("profile.html")
+
+
 # Add a new route for the login page
 # @views.route("/login")
 # @login_required
