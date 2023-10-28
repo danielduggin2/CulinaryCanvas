@@ -1,26 +1,36 @@
-from flask import Blueprint, render_template, redirect, url_for, request, session, jsonify
-from .models import Recipe 
+from flask import (
+    Blueprint,
+    render_template,
+    redirect,
+    url_for,
+    request,
+    session,
+    jsonify,
+)
+from .models import Recipe
 from . import db
 from flask_login import login_required, current_user
 
 views = Blueprint("views", __name__)
 
-#test comment - bri
+
+# test comment - bri
 @views.route("/")
 @login_required
 def root():
     return render_template("home.html")
 
+
 # START: Define a route for the HTML pages
 @views.route("/home")
 @login_required
 def home():
-    #query for all recipes
-    recipe_query=db.session.query(Recipe).all()
-    #create dictionary ready to store array of recipes
-    recipe_json = {"recipes":[]}
+    # query for all recipes
+    recipe_query = db.session.query(Recipe).all()
+    # create dictionary ready to store array of recipes
+    recipe_json = {"recipes": []}
 
-    #iterate through recipe_query, and assign db values to dictionary values for frontend
+    # iterate through recipe_query, and assign db values to dictionary values for frontend
     for recipe in recipe_query:
         thisdict = {
             "id": recipe.id,
@@ -35,11 +45,11 @@ def home():
             "ingredients": recipe.ingredients,
             "category_id": recipe.category_id,
         }
-        #append dicionary to list in recipes dictionary
+        # append dicionary to list in recipes dictionary
         recipe_json["recipes"].append(thisdict)
-    
+
     print(recipe_json)
-    return render_template("home.html",recipes=recipe_json)
+    return render_template("home.html", recipes=recipe_json)
 
 
 # Oct 25 - Added Route for About Page
@@ -49,10 +59,18 @@ def about():
     return render_template("about.html")
 
 
-@views.route("/reviews")
+# route for favorites
+@views.route("/favorites")
 @login_required
-def reviews():
-    return render_template("reviews.html")
+def favorites():
+    return render_template("favorites.html")
+
+
+# route for create
+@views.route("/create")
+@login_required
+def create():
+    return render_template("create.html")
 
 
 # Add a new route for the login page

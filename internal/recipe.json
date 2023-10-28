@@ -12,7 +12,7 @@
       "time": "20 minutes",
       "calories": "450 calories per serving",
       "description": "A classic Italian pasta dish made with eggs, Pecorino Romano cheese, pancetta, and black pepper.",
-      "image": "https://example.com/images/spaghetti_carbonara.jpg",
+      "image": "../static/Images/chicken-and-waffle.webp",
       "ingredients": [
         "8 oz spaghetti",
         "3 large eggs",
@@ -39,7 +39,7 @@
       "time": "45 minutes",
       "calories": "600 calories per serving",
       "description": "Buffalo Chicken Mac and Cheese is a delightful fusion of spicy buffalo chicken, creamy mac and cheese, and a hint of celery for a classic buffalo wing flavor.",
-      "image": "https://example.com/images/buffalo_mac_and_cheese.jpg",
+      "image": "../static/Images/chicken-and-waffle.webp",
       "ingredients": [
         "8 oz macaroni",
         "2 boneless, skinless chicken breasts",
@@ -66,7 +66,7 @@
         "time": "15 minutes",
         "calories": "300 calories per serving",
         "description": "A simple and delicious chicken salad with a mix of flavors and textures.",
-        "image": "https://example.com/images/chicken_salad.jpg",
+        "image": "../static/Images/chicken-and-waffle.webp",
         "ingredients": [
           "2 cups cooked chicken breast, shredded",
           "1/2 cup mayonnaise",
@@ -89,7 +89,7 @@
         "time": "25 minutes",
         "calories": "350 calories per serving",
         "description": "A simple and flavorful spaghetti dish with a homemade tomato sauce and fresh basil.",
-        "image": "https://example.com/images/spaghetti.jpg",
+        "image": "../static/Images/chicken-and-waffle.webp",
         "ingredients": [
           "8 oz spaghetti",
           "2 cloves garlic, minced",
@@ -116,7 +116,7 @@
         "time": "50 minutes",
         "calories": "250 calories per empanada",
         "description": "Empanadas are a delightful Latin American snack with a flavorful beef filling and a flaky pastry crust.",
-        "image": "https://example.com/images/empanadas.jpg",
+        "image": "../static/Images/chicken-and-waffle.webp",
         "ingredients": [
           "2 cups all-purpose flour",
           "1/2 teaspoon salt",
@@ -148,7 +148,7 @@
         "time": "30 minutes",
         "calories": "600 calories per serving",
         "description": "Chicken and Waffles is a classic Southern dish that combines crispy fried chicken with fluffy waffles, topped with sweet maple syrup.",
-        "image": "https://example.com/images/chicken_and_waffles.jpg",
+        "image": "../static/Images/chicken-and-waffle.webp",
         "ingredients": [
           "1 cup all-purpose flour",
           "2 tablespoons sugar",
@@ -182,7 +182,7 @@
         "time": "20 minutes",
         "calories": "400 calories per serving",
         "description": "Eggs Benedict is a classic brunch dish featuring poached eggs, Canadian bacon, and hollandaise sauce served on toasted English muffins.",
-        "image": "https://example.com/images/eggs_benedict.jpg",
+        "image": "../static/Images/chicken-and-waffle.webp",
         "ingredients": [
           "4 large egg yolks",
           "1 tablespoon lemon juice",
@@ -213,7 +213,7 @@
         "time": "20 minutes",
         "calories": "350 calories per burrito",
         "description": "Breakfast Burritos are a satisfying morning meal featuring savory sausage, scrambled eggs, and melted cheese wrapped in a warm tortilla.",
-        "image": "https://example.com/images/breakfast_burritos.jpg",
+        "image": "../static/Images/chicken-and-waffle.webp",
         "ingredients": [
           "1/2 lb ground breakfast sausage",
           "1/4 cup diced onions",
