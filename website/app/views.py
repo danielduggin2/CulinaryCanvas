@@ -67,9 +67,58 @@ def favorites():
 
 
 # route for create
-@views.route("/create")
+@views.route("/create", methods=['GET','POST'])
 @login_required
 def create():
+    print(current_user.id)
+    if request.method == 'POST':
+        # get form data
+        name = request.form.get('name')
+        instructions = request.form.get('instructions')
+        hours_to_make = request.form.get('hours_to_make')
+        minutes_to_make = request.form.get('minutes_to_make')
+        calories = request.form.get('calories')
+        description = request.form.get('description')
+        image = request.form.get('image')
+        ingredients = request.form.get('ingredients')
+        category_id = request.form.get('category_id')
+        
+        # split the lists of instructions and ingredients by the delimiter (temporary solution until tag input is set up)
+        instruction_list = instructions.split('|')
+        ingredient_list = ingredients.split('|')
+
+        instructions_string = ""
+        ingredient_string = ""
+
+        # populate our strings with the array data, separated by delimeters (temporary solution until tag input is set up)
+        for i,instruction in enumerate(instruction_list):
+            instructions_string = instructions_string + instruction
+            if (i < len(instruction_list)-1):
+                instructions_string = instructions_string + '|'
+
+        for i,ingredient in enumerate(ingredient_list):
+            ingredient_string = ingredient_string + ingredient
+            if (i < len(ingredient_list)-1):
+                ingredient_string = ingredient_string + '|'
+        
+        
+        new_recipe = Recipe(user_id = current_user.id,name=name,instructions=instructions,hours_to_make=hours_to_make,minutes_to_make=minutes_to_make,calories=calories,description=description,image=image,ingredients=ingredients,category_id=category_id)
+        db.session.add(new_recipe)
+        db.session.commit()
+
+
+# id = db.Column(db.Integer, primary_key=True)
+#     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+#     name = db.Column(db.String(50))
+#     instructions = db.Column(db.String(1000))  # instructions will be delimited by ¦
+#     hours_to_make = db.Column(db.Integer)
+#     minutes_to_make = db.Column(db.Integer)  # Time Formatting? HH:MM
+#     calories = db.Column(db.Integer)
+#     description = db.Column(db.String(1000))
+#     image = db.Column(db.String(200))
+#     ingredients = db.Column(db.String(1000))  # ingredients will be delimited by ¦
+#     category_id = db.Column(db.Integer, db.ForeignKey("category.id"))
+        
     return render_template("create.html")
 
 
@@ -78,6 +127,8 @@ def create():
 @login_required
 def profile():
     return render_template("profile.html")
+
+
 
 
 # Add a new route for the login page
