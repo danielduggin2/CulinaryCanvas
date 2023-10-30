@@ -65,8 +65,8 @@
 
       /* Circular icon styles */
       .profile-icon::after {
-        content: "";
-        background-image: url("../static/Images/profile.jpeg");
+        /* content: "";
+        background-image: url("../static/Images/profile.jpeg"); */
         background-size: cover;
         width: 40px; /* Increase the size of the icon */
         height: 40px; /* Increase the size of the icon */
@@ -111,7 +111,22 @@
           <li><a href="/about">About Us</a></li>
           <li><a href="/favorites">Favorites</a></li>
           <li><a href="/create">Create</a></li>
-          <li class="profile-icon" a href="/profiles"></li>
+          <li class="profile-icon">
+            <a href="/profile"
+              ><img
+                src="../static/Images/profile.jpeg"
+                alt="profile-icon"
+                style="
+                  background-size: cover;
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  display: inline-block;
+                  vertical-align: middle;
+                  margin-left: 10px;
+                "
+            /></a>
+          </li>
         </ul>
       </nav>
     </header>
