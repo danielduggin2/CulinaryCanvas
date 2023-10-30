@@ -15,13 +15,14 @@ views = Blueprint("views", __name__)
 
 
 # test comment - bri
-@views.route("/")
-@login_required
-def root():
-    return render_template("home.html")
+# @views.route("/")
+# @login_required
+# def root():
+#     return render_template("home.html")
 
 
 # START: Define a route for the HTML pages
+@views.route("/")
 @views.route("/home")
 @login_required
 def home():
@@ -31,6 +32,7 @@ def home():
     recipe_json = {"recipes": []}
 
     # iterate through recipe_query, and assign db values to dictionary values for frontend
+    # each column name defined in the models is the column name in SQL
     for recipe in recipe_query:
         thisdict = {
             "id": recipe.id,

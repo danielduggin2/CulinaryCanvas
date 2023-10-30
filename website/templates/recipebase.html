@@ -1,0 +1,23 @@
+{%extends "home.html"%} {%block card%}
+<!-- Recipe 1:
+       NOTE: The image is hard coded. 
+       When we start findig more for each recipe, 
+       we will need to make sure they are: 4991 × 2807 pixels-->
+<div class="recipe-card">
+  <img
+    src="../static/Images/chicken-and-waffle.webp"
+    alt="chicken-and-waffle"
+  />
+  <div class="recipe-details" date-category="">
+    <ul>
+      <li>Time: {{element.get('minutes')}} minutes</li>
+      <li>Servings: 4</li>
+      <li>Calories: {{element.get('calories')}}</li>
+    </ul>
+  </div>
+  <p class="recipe-description">{{element.get('name')}}</p>
+  <button class="save-button">Save Recipe</button>
+  <button class="info-button">More Info</button>
+</div>
+<!-- End Recipe 1 -->
+{%endblock%}

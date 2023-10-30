@@ -1,6 +1,7 @@
 {"recipes" : [
   {
       "recipe_name": "Spaghetti Carbonara",
+      "category": "dinner",
       "instructions": [
         "Step 1: Cook spaghetti in a large pot of salted boiling water until al dente.",
         "Step 2: In a bowl, whisk together eggs, grated Pecorino Romano cheese, and black pepper.",
@@ -24,6 +25,7 @@
 
     {
       "recipe_name": "Buffalo Chicken Mac and Cheese",
+      "category": "dinner",
       "instructions": [
         "Step 1: Preheat your oven to 375°F (190°C).",
         "Step 2: Cook the macaroni in a large pot of salted boiling water until al dente. Drain and set aside.",
@@ -57,6 +59,7 @@
 
     {
         "recipe_name": "Chicken Salad",
+        "category": "lunch",
         "instructions": [
           "Step 1: Cook and shred chicken breast.",
           "Step 2: Mix shredded chicken with mayonnaise, diced celery, and grapes.",
@@ -78,6 +81,7 @@
 
       {
         "recipe_name": "Spaghetti",
+        "category":"lunch",
         "instructions": [
           "Step 1: Cook spaghetti in a large pot of salted boiling water until al dente.",
           "Step 2: In a skillet, heat olive oil and sauté minced garlic until fragrant.",
@@ -104,6 +108,7 @@
 
       {
         "recipe_name": "Empanadas",
+        "category":"dinner",
         "instructions": [
           "Step 1: In a large mixing bowl, combine all-purpose flour, salt, and cold butter. Mix until it forms a crumbly texture.",
           "Step 2: Gradually add cold water and knead the dough until it's smooth.",
@@ -134,6 +139,7 @@
 
       {
         "recipe_name": "Chicken and Waffles",
+        "category": "breakfast",
         "instructions": [
           "Step 1: Preheat your waffle iron according to the manufacturer's instructions.",
           "Step 2: In a mixing bowl, combine all-purpose flour, sugar, baking powder, and salt.",
@@ -167,6 +173,7 @@
 
       {
         "recipe_name": "Eggs Benedict",
+        "category": "breakfast",
         "instructions": [
           "Step 1: Fill a saucepan with a few inches of water and bring it to a simmer.",
           "Step 2: In a heatproof bowl, whisk together egg yolks, lemon juice, and a pinch of cayenne pepper.",
@@ -198,6 +205,7 @@
 
       {
         "recipe_name": "Breakfast Burritos",
+        "category":"breakfast",
         "instructions": [
           "Step 1: In a skillet, cook ground breakfast sausage over medium heat until browned and crumbled. Drain excess fat.",
           "Step 2: Add diced onions, bell peppers, and minced garlic to the skillet. Cook until the vegetables are tender.",
