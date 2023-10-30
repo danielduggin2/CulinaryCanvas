@@ -1,158 +1,70 @@
 {%extends "base.html"%} {%block content%}
 <form method="POST"></form>
+<style>
+  .category-buttons {
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-around;
+    padding: 5px;
+  }
+
+  .category-filter {
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  .category-filter:hover {
+    background-color: #0056b3;
+  }
+</style>
+<!-- FILTER TESTING START -->
+<div class="category-buttons">
+  <button class="category-filter" data-category="all">All</button>
+  <button class="category-filter" data-category="breakfast">Breakfast</button>
+  <button class="category-filter" data-category="lunch">Lunch</button>
+  <button class="category-filter" data-category="dinner">Dinner</button>
+</div>
+<!-- FILTER TESTING END -->
 
 <div class="recipe-container">
-  <!-- Recipe 1:
-       NOTE: The image is hard coded. 
-       When we start findig more for each recipe, 
-       we will need to make sure they are: 4991 × 2807 pixels-->
-  <div class="recipe-card">
-    <img
-      src="../static/Images/chicken-and-waffle.webp"
-      alt="chicken-and-waffle"
-    />
-    <div class="recipe-details">
-      <ul>
-        <li>Time: 30 minutes</li>
-        <li>Servings: 4</li>
-        <li>Calories: 250</li>
-      </ul>
-    </div>
-    <p class="recipe-description">Chicken and waffles</p>
-    <button class="save-button">Save Recipe</button>
-    <button class="info-button">More Info</button>
-  </div>
-  <!-- End Recipe 1 -->
-
-  <!-- Recipe 2 -->
-  <div class="recipe-card">
-    <img
-      src="../static/Images/chicken-and-waffle.webp"
-      alt="chicken-and-waffle"
-    />
-    <div class="recipe-details">
-      <ul>
-        <li>Time: 45 minutes</li>
-        <li>Servings: 6</li>
-        <li>Calories: 300</li>
-      </ul>
-    </div>
-    <p class="recipe-description">Chicken and waffles</p>
-    <button class="save-button">Save Recipe</button>
-    <button class="info-button">More Info</button>
-  </div>
-  <!-- End Recipe 2 -->
-
-  <!-- Recipe 3 -->
-  <div class="recipe-card">
-    <img
-      src="../static/Images/chicken-and-waffle.webp"
-      alt="chicken-and-waffle"
-    />
-    <div class="recipe-details">
-      <ul>
-        <li>Time: 30 minutes</li>
-        <li>Servings: 4</li>
-        <li>Calories: 250</li>
-      </ul>
-    </div>
-    <p class="recipe-description">Chicken and waffles</p>
-    <button class="save-button">Save Recipe</button>
-    <button class="info-button">More Info</button>
-  </div>
-
-  <!-- Recipe 4 -->
-  <div class="recipe-card">
-    <img
-      src="../static/Images/chicken-and-waffle.webp"
-      alt="chicken-and-waffle"
-    />
-    <div class="recipe-details">
-      <ul>
-        <li>Time: 30 minutes</li>
-        <li>Servings: 4</li>
-        <li>Calories: 250</li>
-      </ul>
-    </div>
-    <p class="recipe-description">Chicken and waffles</p>
-    <button class="save-button">Save Recipe</button>
-    <button class="info-button">More Info</button>
-  </div>
-
-  <!-- Recipe 5 -->
-  <div class="recipe-card">
-    <img
-      src="../static/Images/chicken-and-waffle.webp"
-      alt="chicken-and-waffle"
-    />
-    <div class="recipe-details">
-      <ul>
-        <li>Time: 30 minutes</li>
-        <li>Servings: 4</li>
-        <li>Calories: 250</li>
-      </ul>
-    </div>
-    <p class="recipe-description">Chicken and waffles</p>
-    <button class="save-button">Save Recipe</button>
-    <button class="info-button">More Info</button>
-  </div>
-
-  <!-- RECIPE 6 START -->
-  <div class="recipe-card">
-    <img
-      src="../static/Images/chicken-and-waffle.webp"
-      alt="chicken-and-waffle"
-    />
-    <div class="recipe-details">
-      <ul>
-        <li>Time: 30 minutes</li>
-        <li>Servings: 4</li>
-        <li>Calories: 250</li>
-      </ul>
-    </div>
-    <p class="recipe-description">Chicken and waffles</p>
-    <button class="save-button">Save Recipe</button>
-    <button class="info-button">More Info</button>
-  </div>
-
-  <!-- RECIPE 6 END -->
-
-  <!-- RECIPE 7 START -->
-  <div class="recipe-card">
-    <img
-      src="../static/Images/chicken-and-waffle.webp"
-      alt="chicken-and-waffle"
-    />
-    <div class="recipe-details">
-      <ul>
-        <li>Time: 30 minutes</li>
-        <li>Servings: 4</li>
-        <li>Calories: 250</li>
-      </ul>
-    </div>
-    <p class="recipe-description">Chicken and waffles</p>
-    <button class="save-button">Save Recipe</button>
-    <button class="info-button">More Info</button>
-  </div>
-  <!-- RECIPE 8 END -->
-
-  <!-- RECIPE 8 START -->
-  <div class="recipe-card">
-    <img
-      src="../static/Images/chicken-and-waffle.webp"
-      alt="chicken-and-waffle"
-    />
-    <div class="recipe-details">
-      <ul>
-        <li>Time: 30 minutes</li>
-        <li>Servings: 4</li>
-        <li>Calories: 250</li>
-      </ul>
-    </div>
-    <p class="recipe-description">Chicken and waffles</p>
-    <button class="save-button">Save Recipe</button>
-    <button class="info-button">More Info</button>
-  </div>
-  <!-- RECIPE 8 END -->
+  {% for element in recipes.get('recipes') %} {% set recipe_element = element %}
+  {% include "recipebase.html" %} {% endfor %}
 </div>
 {%endblock%}
+<!-- SCRIPT FOR FILTER TESTING -->
+<!-- NEED: find a way to filter real categories -->
+<script>
+  const recipeCards = document.querySelectorAll(".recipe-card");
+  const categoryButtons = document.querySelectorAll(".category-filter");
+
+  // Fetch the recipes from "recipes.json"
+  fetch("/static/recipe.json") // Adjust the path as needed
+    .then((response) => response.json())
+    .then((data) => {
+      const recipes = data.recipes;
+
+      // Initially, display all recipes
+      showRecipes("all");
+
+      // Add event listeners to category buttons
+      categoryButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const category = button.getAttribute("data-category");
+          showRecipes(category);
+        });
+      });
+
+      function showRecipes(category) {
+        recipeCards.forEach((card, index) => {
+          const cardCategory = recipes[index].category; // Add "category" property to your JSON data
+          if (category === "all" || category === cardCategory) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      }
+    })
+    .catch((error) => console.error("Error loading JSON data:", error));
+</script>

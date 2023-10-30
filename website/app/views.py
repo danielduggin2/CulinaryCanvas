@@ -15,13 +15,14 @@ views = Blueprint("views", __name__)
 
 
 # test comment - bri
-@views.route("/")
-@login_required
-def root():
-    return render_template("home.html")
+# @views.route("/")
+# @login_required
+# def root():
+#     return render_template("home.html")
 
 
 # START: Define a route for the HTML pages
+@views.route("/")
 @views.route("/home")
 @login_required
 def home():
@@ -31,6 +32,7 @@ def home():
     recipe_json = {"recipes": []}
 
     # iterate through recipe_query, and assign db values to dictionary values for frontend
+    # each column name defined in the models is the column name in SQL
     for recipe in recipe_query:
         thisdict = {
             "id": recipe.id,
@@ -59,11 +61,34 @@ def about():
     return render_template("about.html")
 
 
-# route for favorites
+# route for favorites - ANDRES CHECK THIS CODE PLEASE
 @views.route("/favorites")
 @login_required
 def favorites():
-    return render_template("favorites.html")
+    # Query for all recipes (you can use the same code as in the "home" route)
+    recipe_query = db.session.query(Recipe).all()
+
+    # Create a dictionary to store the array of recipes
+    recipe_json = {"recipes": []}
+
+    # Iterate through recipe_query and assign database values to dictionary values
+    for recipe in recipe_query:
+        thisdict = {
+            "id": recipe.id,
+            "user_id": recipe.user_id,
+            "name": recipe.name,
+            "instructions": recipe.instructions,
+            "hours": recipe.hours_to_make,
+            "minutes": recipe.minutes_to_make,
+            "calories": recipe.calories,
+            "description": recipe.description,
+            "image": recipe.image,
+            "ingredients": recipe.ingredients,
+            "category_id": recipe.category_id,
+        }
+        recipe_json["recipes"].append(thisdict)
+
+    return render_template("favorites.html", recipes=recipe_json)
 
 
 # route for create

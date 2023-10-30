@@ -1,0 +1,16 @@
+<div class="recipe-card">
+  <img
+    src="../static/Images/chicken-and-waffle.webp"
+    alt="chicken-and-waffle"
+  />
+  <div class="recipe-details" date-category="">
+    <ul>
+      <li>Time: {{element.get('minutes')}} minutes</li>
+      <li>Servings: 4</li>
+      <li>Calories: {{element.get('calories')}}</li>
+    </ul>
+  </div>
+  <p class="recipe-description">{{element.get('name')}}</p>
+  <button class="save-button">Save Recipe</button>
+  <button class="info-button">More Info</button>
+</div>
