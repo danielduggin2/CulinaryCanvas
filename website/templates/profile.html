@@ -68,12 +68,12 @@
     <div class="profile-image">
         <img src="your-profile-image.jpg" alt="User Profile Image">
     </div>
-    <h2 class="profile-name">John Doe</h2>
+    <h2 class="profile-name">{{user.first_name}} {{user.last_name}}</h2>
     <div class="profile-info">
-        <p><span class="label">First Name: </span><span class="value">John</span></p>
-        <p><span class="label">Last Name: </span><span class="value">Doe</span></p>
-        <p><span class="label">User Name: </span><span class="value">JDoe</span></p>
-        <p><span class="label">Email: </span><span class="value">example@gmail.com</span></p>
+        <p><span class="label">First Name: </span><span class="value">{{user.first_name}}</span></p>
+        <p><span class="label">Last Name: </span><span class="value">{{user.last_name}}</span></p>
+        <p><span class="label">User Name: </span><span class="value">{{user.username}}</span></p>
+        <p><span class="label">Email: </span><span class="value">{{user.email}}</span></p>
     </div>
 </div>
 
