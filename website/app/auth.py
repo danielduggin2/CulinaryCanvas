@@ -14,7 +14,7 @@ auth = Blueprint("auth", __name__)
 def login():
     if request.method == 'POST':
         # Get the username (email) and password from the submitted form
-        username = request.form.get('username')
+        username = request.form.get('email')
         password = request.form.get('password')
         
         # Query the database for a user with the provided email
