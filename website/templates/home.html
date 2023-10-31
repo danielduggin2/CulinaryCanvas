@@ -28,8 +28,8 @@
 <!-- FILTER TESTING END -->
 
 <div class="recipe-container">
-  {% for element in recipes.get('recipes') %} {% set recipe_element = element %}
-  {% include "recipebase.html" %} {% endfor %}
+  {% for element in recipes.get('recipes') %} {% include "recipebase.html" %} {%
+  endfor %}
 </div>
 {%endblock%}
 <!-- SCRIPT FOR FILTER TESTING -->
