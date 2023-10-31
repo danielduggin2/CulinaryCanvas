@@ -1,17 +1,68 @@
 {% with messages = get_flashed_messages(with_categories=true) %} {% if messages
 %} {%for category, message in messages%} {%if category =='error'%}
-<div class="error-flash-message flash-message" role="alert">
-  {{message}}
-  <button type="button" class="error-close">
-    <span aria-hidden="true">&times;</span>
+<div
+  class="error-flash-message flash-message"
+  role="alert"
+  style="
+    background-color: #ffcccc;
+    border: 2px solid #ff6666;
+    color: #cc0000;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+  "
+>
+  <p style="flex: 1; margin: 0">{{ message }}</p>
+  <button
+    type="button"
+    class="error-close"
+    style="
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 20px;
+      padding: 5px;
+      color: #cc0000;
+    "
+  >
+    &times;
   </button>
 </div>
-
-{%else%}
-<div class="success-flash-message flash-message" role="alert">
-  {{message}}
-  <button type="button" class="success-close">
-    <span aria-hidden="true">&times;</span>
+{% else %}
+<div
+  class="success-flash-message flash-message"
+  role="alert"
+  style="
+    background-color: #ccffcc;
+    border: 2px solid #66ff66;
+    color: #009900;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+  "
+>
+  <p style="flex: 1; margin: 0">{{ message }}</p>
+  <button
+    type="button"
+    class="success-close"
+    style="
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 20px;
+      padding: 5px;
+      color: #009900;
+    "
+  >
+    &times;
   </button>
 </div>
 {%endif%} {%endfor%} {%endif%} {%endwith%}
