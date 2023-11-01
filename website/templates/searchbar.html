@@ -67,7 +67,7 @@
       method: "POST",
       body: JSON.stringify({ recipe_id: id }),
     }).then((response) => {
-      response.json()
+      return response.json()
     })
     .then((data)=>{
       handleSaveButton(favorited = data.favorited, button = button)
