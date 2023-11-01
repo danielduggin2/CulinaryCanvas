@@ -1,20 +1,24 @@
 <script>
   window.onload = codeAddress;
 
-  function codeAddress(){
+  function codeAddress() {
     let url = new URL(location);
-    let state = document.querySelector(".recipe-container").innerHTML
-    history.replaceState({"html":state},"",url)
+    let state = document.querySelector(".recipe-container").innerHTML;
+    history.replaceState({ html: state }, "", url);
   }
 
-  function render_recipes(recipes){
-    let current_recipes = document.querySelectorAll(".recipe-container > .recipe-card")
-    current_recipes.forEach(element => {
+  function render_recipes(recipes) {
+    let current_recipes = document.querySelectorAll(
+      ".recipe-container > .recipe-card"
+    );
+    current_recipes.forEach((element) => {
       element.remove();
     });
-    let container = document.querySelector(".recipe-container")
-    recipes.forEach(recipe => {
-      container.innerHTML = container.innerHTML + `
+    let container = document.querySelector(".recipe-container");
+    recipes.forEach((recipe) => {
+      container.innerHTML =
+        container.innerHTML +
+        `
         <div class="recipe-card">
           <img
           src="../static/Images/chicken-and-waffle.webp"
@@ -28,74 +32,122 @@
             </ul>
           </div>
           <p class="recipe-description">${recipe.name}</p>
-          <button class="save-button ${recipe.favorited ? "favorited" : ""}" onClick="favoriteToggle(${recipe.id})">${recipe.favorited ? "Saved" : "Save Recipe"}</button>
+          <button class="save-button ${
+            recipe.favorited ? "favorited" : ""
+          }" onClick="favoriteToggle(${recipe.id})">${
+          recipe.favorited ? "Saved" : "Save Recipe"
+        }</button>
           <button class="info-button">More Info</button>
-        </div>`
-    })
+        </div>`;
+    });
   }
 
   function search() {
     search_term = document.querySelector("#search");
-    fetch("/home?" + new URLSearchParams({
-      search:search_term.value
-    }), {
-      method: "GET",
-      headers: {
-      "Content-Type": "application/json",
-    }
-    })
-    .then((response) => response.json())
-    .then((data)=>{
-      render_recipes(data.recipes);
-      let state = document.querySelector(".recipe-container").innerHTML
-      const url = new URL(location);
-      url.searchParams.set("search", search_term.value);
-      history.pushState({"html":state}, "", url);
-    });
+    fetch(
+      "/home?" +
+        new URLSearchParams({
+          search: search_term.value,
+        }),
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        render_recipes(data.recipes);
+        let state = document.querySelector(".recipe-container").innerHTML;
+        const url = new URL(location);
+        url.searchParams.set("search", search_term.value);
+        history.pushState({ html: state }, "", url);
+      });
   }
 
-  function handleSaveButton(favorited,button){
-    button.innerHTML = favorited ? "Saved" : "Save Recipe"
-    let state = document.querySelector(".recipe-container").innerHTML
+  function handleSaveButton(favorited, button) {
+    button.innerHTML = favorited ? "Saved" : "Save Recipe";
+    let state = document.querySelector(".recipe-container").innerHTML;
     const url = new URL(location);
-    history.replaceState({"html":state},"",url)
+    history.replaceState({ html: state }, "", url);
   }
 
-  function favoriteToggle(id){
-    button = event.target
+  function favoriteToggle(id) {
+    button = event.target;
     fetch("/favoriteToggle", {
       method: "POST",
       body: JSON.stringify({ recipe_id: id }),
-    }).then((response) => {
-      return response.json()
     })
-    .then((data)=>{
-      handleSaveButton(favorited = data.favorited, button = button)
-    });
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        handleSaveButton((favorited = data.favorited), (button = button));
+      });
   }
 
-  window.onpopstate = function(e){
+  window.onpopstate = function (e) {
     fetch(`${location.href}`, {
       method: "GET",
       headers: {
-      "Content-Type": "application/json",
-    },
+        "Content-Type": "application/json",
+      },
     })
-    .then((response) => response.json())
-    .then((data)=>{
-      render_recipes(data.recipes);
-      let state = document.querySelector(".recipe-container").innerHTML
-      history.replaceState({"html":state}, "", location.href);
-    });
-    if(e.state){
+      .then((response) => response.json())
+      .then((data) => {
+        render_recipes(data.recipes);
+        let state = document.querySelector(".recipe-container").innerHTML;
+        history.replaceState({ html: state }, "", location.href);
+      });
+    if (e.state) {
       document.querySelector(".recipe-container").innerHTML = e.state.html;
-      
     }
   };
-
 </script>
-<div class="searchbar" style="display:block; margin-top: 100px;">
-  <input type="text" id="search" name="search" style="display:block;"/>
-  <button class="searchButton"  type="submit" onclick="search()">Search</button>
-</div>
+<style>
+  .sorting {
+    display: flex;
+    justify-content: space-between; /* Center and separate elements */
+    align-items: center; /* Center vertically */
+    margin-top: 100px;
+  }
 
+  .category-buttons {
+    display: flex;
+  }
+
+  .category-filter {
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  .category-filter:hover {
+    background-color: #0056b3;
+  }
+
+  .searchbar {
+    display: flex;
+    align-items: center; /* Center searchbar vertically */
+  }
+
+  .searchbar input,
+  .searchbar button {
+    margin-right: 10px; /* Add some spacing between input and button */
+  }
+</style>
+<!-- FILTER TESTING START -->
+<div class="sorting">
+  <div class="searchbar">
+    <input type="text" id="search" name="search" />
+    <button class="searchButton" type="submit" onclick="search()">
+      Search
+    </button>
+  </div>
+  <div class="category-buttons">
+    <button class="category-filter" data-category="breakfast">Breakfast</button>
+    <button class="category-filter" data-category="lunch">Lunch</button>
+    <button class="category-filter" data-category="dinner">Dinner</button>
+  </div>
+</div>
