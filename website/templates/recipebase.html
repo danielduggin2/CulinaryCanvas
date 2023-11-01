@@ -1,3 +1,10 @@
+{%if element.get('favorited') %}
+{% set favoriteButtonText = "Saved" %}
+{% set favoriteClass = "favorited" %}
+{%else%}
+{% set favorited = "Save Recipe" %}
+{%endif%}
+
 <div class="recipe-card">
   <img
     src="../static/Images/chicken-and-waffle.webp"
@@ -11,6 +18,6 @@
     </ul>
   </div>
   <p class="recipe-description">{{element.get('name')}}</p>
-  <button class="save-button">Save Recipe</button>
+  <button class="save-button {{favoriteClass}}" onClick="favoriteToggle({{favoriteButtonText}})"></button>
   <button class="info-button">More Info</button>
 </div>

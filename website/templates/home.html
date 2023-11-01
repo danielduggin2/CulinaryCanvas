@@ -25,7 +25,7 @@
   <button class="category-filter" data-category="dinner">Dinner</button>
 </div>
 <!-- FILTER TESTING END -->
-
+{% include "searchbar.html" %}
 <div class="recipe-container">
   {% for element in recipes.get('recipes') %} {% include "recipebase.html" %} {%
   endfor %}

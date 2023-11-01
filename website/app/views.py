@@ -10,6 +10,7 @@ from flask import (
 from .models import Recipe
 from . import db
 from flask_login import login_required, current_user
+import json
 
 views = Blueprint("views", __name__)
 
@@ -23,17 +24,23 @@ views = Blueprint("views", __name__)
 
 # START: Define a route for the HTML pages
 @views.route("/")
-@views.route("/home")
+@views.route("/home",methods=['GET','POST'])
 @login_required
 def home():
-    # query for all recipes
-    recipe_query = db.session.query(Recipe).all()
+    recipe_query = db.session.query(Recipe)
+    if request.content_type:
+        search = request.args.get('search')
+        if search:
+            search = "%{}%".format(search)
+            recipe_query = recipe_query.filter(Recipe.name.like(search))
+    recipe_query = recipe_query.all()
     # create dictionary ready to store array of recipes
     recipe_json = {"recipes": []}
 
     # iterate through recipe_query, and assign db values to dictionary values for frontend
     # each column name defined in the models is the column name in SQL
     for recipe in recipe_query:
+        favorited = "true" if (current_user in recipe.users_who_favorited) else None
         thisdict = {
             "id": recipe.id,
             "user_id": recipe.user_id,
@@ -46,11 +53,13 @@ def home():
             "image": recipe.image,
             "ingredients": recipe.ingredients,
             "category_id": recipe.category_id,
+            "favorited" : favorited
         }
         # append dicionary to list in recipes dictionary
         recipe_json["recipes"].append(thisdict)
 
-    print(recipe_json)
+    if request.content_type:
+        return jsonify(recipe_json)
     return render_template("home.html", recipes=recipe_json)
 
 
@@ -153,6 +162,23 @@ def create():
 def profile():
     return render_template("profile.html", user = current_user)
 
+# route for profile (profile icon is the button for it)
+@views.route("/favoriteToggle", methods=['GET','POST'])
+@login_required
+def favoriteToggle():
+    
+    recipe_id = json.loads(request.data)["recipe_id"]
+    
+    recipe = Recipe.query.get(recipe_id)
+    favorited = 1
+    if (recipe in current_user.favorites):
+        favorited = 0
+        current_user.favorites.pop(current_user.favorites.index(recipe))
+    else:
+        current_user.favorites.append(recipe)
+        db.session.add(recipe)    
+    db.session.commit()
+    return jsonify({"favorited":favorited})
 
 
 
