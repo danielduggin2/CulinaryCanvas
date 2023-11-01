@@ -20,7 +20,6 @@
 </style>
 <!-- FILTER TESTING START -->
 <div class="category-buttons">
-  <button class="category-filter" data-category="all">All</button>
   <button class="category-filter" data-category="breakfast">Breakfast</button>
   <button class="category-filter" data-category="lunch">Lunch</button>
   <button class="category-filter" data-category="dinner">Dinner</button>
@@ -34,37 +33,3 @@
 {%endblock%}
 <!-- SCRIPT FOR FILTER TESTING -->
 <!-- NEED: find a way to filter real categories -->
-<script>
-  const recipeCards = document.querySelectorAll(".recipe-card");
-  const categoryButtons = document.querySelectorAll(".category-filter");
-
-  // Fetch the recipes from "recipes.json"
-  fetch("/static/recipe.json") // Adjust the path as needed
-    .then((response) => response.json())
-    .then((data) => {
-      const recipes = data.recipes;
-
-      // Initially, display all recipes
-      showRecipes("all");
-
-      // Add event listeners to category buttons
-      categoryButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-          const category = button.getAttribute("data-category");
-          showRecipes(category);
-        });
-      });
-
-      function showRecipes(category) {
-        recipeCards.forEach((card, index) => {
-          const cardCategory = recipes[index].category; // Add "category" property to your JSON data
-          if (category === "all" || category === cardCategory) {
-            card.style.display = "block";
-          } else {
-            card.style.display = "none";
-          }
-        });
-      }
-    })
-    .catch((error) => console.error("Error loading JSON data:", error));
-</script>
