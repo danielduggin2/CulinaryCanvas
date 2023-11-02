@@ -2,72 +2,83 @@
 top: 10px;
 left: 10px;
 right: 10px;  -->
-{% with messages = get_flashed_messages(with_categories=true) %} {% if messages
-%} {%for category, message in messages%} {%if category =='error'%}
-<div
-  class="error-flash-message flash-message"
-  role="alert"
-  style="
-    background-color: #ffcccc;
-    border: 2px solid #ff6666;
-    color: #cc0000;
+<style>
+  .flash-messages-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 75px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .flash-message {
+    background-color: #fff;
+    border: 1px solid #ccc;
     padding: 10px;
-    border-radius: 5px;
-    margin: 10px;
+    margin: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    font-size: 16px;
-  "
->
-  <p style="flex: 1; margin: 0">{{ message }}</p>
-  <button
-    type="button"
-    class="error-close"
-    style="
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 20px;
-      padding: 5px;
-      color: #cc0000;
-    "
+    border-radius: 10px; /* Rounded corners */
+  }
+
+  .flash-message p {
+    margin: 0;
+    white-space: nowrap; /* Keeps text on one line */
+    overflow: visible; /* Display entire content */
+    text-align: center; /* Center-align the text */
+  }
+
+  .flash-message-close {
+    color: black;
+  }
+
+  .flash-message button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .error-flash-message {
+    background-color: #fd8585; /* Red background for error messages */
+  }
+
+  .success-flash-message {
+    background-color: #ccffcc; /* Green background for success messages */
+  }
+</style>
+
+<div class="flash-messages-container">
+  {% with messages = get_flashed_messages(with_categories=true) %} {% if
+  messages %} {% for category, message in messages %}
+  <div
+    class="flash-message {% if category =='error' %} error-flash-message {% else %} success-flash-message {% endif %}"
+    role="alert"
   >
-    &times;
-  </button>
+    <p>{{ message }}</p>
+    <button type="button" class="flash-message-close">&times;</button>
+  </div>
+  {% endfor %} {% endif %} {% endwith %}
 </div>
-{% else %}
-<div
-  class="success-flash-message flash-message"
-  role="alert"
-  style="
-    background-color: #ccffcc;
-    border: 2px solid #66ff66;
-    color: #009900;
-    padding: 10px;
-    border-radius: 5px;
-    margin: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 16px;
-  "
->
-  <p style="flex: 1; margin: 0">{{ message }}</p>
-  <button
-    type="button"
-    class="success-close"
-    style="
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 20px;
-      padding: 5px;
-      color: #009900;
-    "
+
+<div class="flash-messages-container">
+  {% with messages = get_flashed_messages(with_categories=true) %} {% if
+  messages %} {% for category, message in messages %}
+  <div
+    class="flash-message {% if category =='error' %} error-flash-message {% else %} success-flash-message {% endif %}"
+    role="alert"
   >
-    &times;
-  </button>
+    <p>{{ message }}</p>
+    <button type="button" class="flash-message-close">&times;</button>
+  </div>
+  {% endfor %} {% endif %} {% endwith %}
 </div>
-{%endif%} {%endfor%} {%endif%} {%endwith%}
-<script src="../static/flashmessage.js" type="text/javascript" charset="utf-8"></script>
+
+<script
+  src="../static/flashmessage.js"
+  type="text/javascript"
+  charset="utf-8"
+></script>
