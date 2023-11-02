@@ -2,13 +2,19 @@
 
 <script>
   // Function to be executed when the window loads
-  window.onload = codeAddress;
+  window.onload = startupFunction;
 
-  function codeAddress() {
+  function startupFunction() {
     // Store the initial state of the recipe container in the browser's history
     let url = new URL(location);
     let state = document.querySelector(".recipe-container").innerHTML;
     history.replaceState({ html: state }, "", url);
+    let searchbar = document.querySelector("#search")
+    searchbar.addEventListener("keydown",(e)=>{
+      if (e.code === "Enter") {  //checks whether the pressed key is "Enter"
+        search(e.target.value);
+      }
+    })
   }
 
   // Function to render recipes dynamically based on the data received from the server
