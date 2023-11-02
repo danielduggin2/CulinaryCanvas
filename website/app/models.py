@@ -35,9 +35,10 @@ class Recipe(db.Model):
     # ASSOCIATIONS
     reviews = db.relationship("Review", backref="recipe", lazy=True)
     # BACKREF ASSOCIATIONS
-    # category = Category object
-    # tags = 
-    # user = User object
+    # category = Category Object
+    # difficulty = Difficulty Object
+    # tags = Tag Objects
+    # user = User Object
     # users_who_favorited = User Objects
 
 
