@@ -11,6 +11,13 @@ rel_favorites_User_Recipe = db.Table(
     db.Column("recipe_id", db.ForeignKey("recipe.id"), primary_key=True),
 )
 
+rel_Tags_Recipe = db.Table(
+    "rel_Tags_Recipe",
+    db.metadata,
+    db.Column("tag_id", db.ForeignKey("tag.id"), primary_key=True),
+    db.Column("recipe_id", db.ForeignKey("recipe.id"), primary_key=True),
+)
+
 
 class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -24,10 +31,12 @@ class Recipe(db.Model):
     image = db.Column(db.String(200))
     ingredients = db.Column(db.String(1000))  # ingredients will be delimited by ¦
     category_id = db.Column(db.Integer, db.ForeignKey("category.id"))
+    difficulty_id = db.Column(db.Integer, db.ForeignKey("difficulty.id"))
     # ASSOCIATIONS
     reviews = db.relationship("Review", backref="recipe", lazy=True)
     # BACKREF ASSOCIATIONS
     # category = Category object
+    # tags = 
     # user = User object
     # users_who_favorited = User Objects
 
@@ -45,13 +54,23 @@ class User(db.Model, UserMixin):
         "Recipe", secondary=rel_favorites_User_Recipe, backref="users_who_favorited"
     )
 
-
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(30))
+    name = db.Column(db.String(30), unique=True)
     # ASSOCIATIONS
     recipes = db.relationship("Recipe", backref="category", lazy=True)
 
+class Tag(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    tag = db.Column(db.String(30), unique=True)
+    recipes = db.relationship(
+        "Recipe", secondary=rel_Tags_Recipe, backref="tags"
+    )
+
+class Difficulty(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    difficulty = db.Column(db.String(30), unique=True)
+    recipes = db.relationship("Recipe", backref="difficulty", lazy=True)
 
 class Review(db.Model):
     recipe_id = db.Column(db.Integer, db.ForeignKey("recipe.id"), primary_key=True)
