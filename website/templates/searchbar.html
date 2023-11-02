@@ -1,9 +1,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <script>
+  // Function to be executed when the window loads
   window.onload = startupFunction;
 
   function startupFunction() {
+    // Store the initial state of the recipe container in the browser's history
     let url = new URL(location);
     let state = document.querySelector(".recipe-container").innerHTML;
     history.replaceState({ html: state }, "", url);
@@ -15,14 +17,16 @@
     })
   }
 
+  // Function to render recipes dynamically based on the data received from the server
   function render_recipes(recipes) {
-    let current_recipes = document.querySelectorAll(
-      ".recipe-container > .recipe-card"
-    );
+    // Remove existing recipe cards from the container
+    let current_recipes = document.querySelectorAll(".recipe-container > .recipe-card");
     current_recipes.forEach((element) => {
       element.remove();
     });
+    // Select the recipe container element
     let container = document.querySelector(".recipe-container");
+    // Iterate over the recipes and generate HTML for each recipe card
     recipes.forEach((recipe) => {
       container.innerHTML =
         container.innerHTML +
@@ -36,13 +40,11 @@
             <ul>
               <li>Time: ${recipe.minutes} minutes</li>
               <li>Servings: 4</li>
-              <li>Calories:${recipe.calories}</li>
+              <li>Calories: ${recipe.calories}</li>
             </ul>
           </div>
           <p class="recipe-description">${recipe.name}</p>
-          <button class="save-button ${
-            recipe.favorited ? "favorited" : ""
-          }" onClick="favoriteToggle(${recipe.id})">${
+          <button class="save-button ${recipe.favorited ? "favorited" : ""}" onClick="favoriteToggle(${recipe.id})">${
           recipe.favorited ? "Saved" : "Save Recipe"
         }</button>
           <button class="info-button">More Info</button>
@@ -50,8 +52,11 @@
     });
   }
 
+  // Function to handle the search functionality
   function search() {
+    // Get the search term from the input field
     search_term = document.querySelector("#search");
+    // Make a GET request to the server with the search term as a query parameter
     fetch(
       "/home?" +
         new URLSearchParams({
@@ -64,9 +69,11 @@
         },
       }
     )
-      .then((response) => response.json())
+      .then((response) => response.json()) // Parse the JSON response
       .then((data) => {
+        // Call the render_recipes function to display the search results
         render_recipes(data.recipes);
+        // Store the current state of the recipe container in the browser's history
         let state = document.querySelector(".recipe-container").innerHTML;
         const url = new URL(location);
         url.searchParams.set("search", search_term.value);
@@ -74,78 +81,93 @@
       });
   }
 
+  // Function to update the save button text based on the favorite status
   function handleSaveButton(favorited, button) {
     button.innerHTML = favorited ? "Saved" : "Save Recipe";
+    // Store the current state of the recipe container in the browser's history
     let state = document.querySelector(".recipe-container").innerHTML;
     const url = new URL(location);
     history.replaceState({ html: state }, "", url);
   }
 
+  // Function to toggle the favorite status of a recipe
   function favoriteToggle(id) {
     button = event.target;
+    // Send a POST request to the server to toggle the favorite status
     fetch("/favoriteToggle", {
       method: "POST",
       body: JSON.stringify({ recipe_id: id }),
     })
       .then((response) => {
-        return response.json();
+        return response.json(); // Parse the JSON response
       })
       .then((data) => {
+        // Call the handleSaveButton function to update the save button text
         handleSaveButton((favorited = data.favorited), (button = button));
       });
   }
 
+  // Event listener for the browser's back and forward buttons
   window.onpopstate = function (e) {
+    // Fetch data based on the current URL and update the recipe container
     fetch(`${location.href}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     })
-      .then((response) => response.json())
+      .then((response) => response.json()) // Parse the JSON response
       .then((data) => {
+        // Call the render_recipes function to display the fetched recipes
         render_recipes(data.recipes);
+        // Store the current state of the recipe container in the browser's history
         let state = document.querySelector(".recipe-container").innerHTML;
         history.replaceState({ html: state }, "", location.href);
       });
+    // If there is a stored state in the history, restore the recipe container content
     if (e.state) {
       document.querySelector(".recipe-container").innerHTML = e.state.html;
     }
   };
 </script>
 
+<!-- CSS styles for the search bar, category buttons, and other elements -->
+
 <style>
+  /* Styles for the sorting section */
   .sorting {
     display: flex;
-    flex-direction: column; /* Arrange children vertically */
-    align-items: center; /* Center children horizontally */
+    flex-direction: column;
+    align-items: center;
     margin-top: 100px;
 }
+
   
   .searchbar {
     display: flex;
-    justify-content: center; /* Centers search bar & button */
+    justify-content: center;
     align-items: center;
-    width: 90%; /* This controls how wide the search bar is */
-}
+    width: 90%;
+  }
 
-.searchbar input,
+  /* Styles for search input and button */
+  .searchbar input,
+  .searchbar button {
+    margin-right: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    outline: none;
+    background-color: #ffffff;
+    cursor: pointer;
+  }
 
-.searchbar button {
-  margin-right: 10px; /* Spacing between input and button */
-  padding: 10px;
-  border: none;
-  border-radius: 25px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  font-size: 16px;
-  outline: none;
-  background-color: #ffffff;
-  cursor: pointer;
-}
-
-.searchbar button:hover {
-  background-color: #e5e5e5;
-}
+  /* Styles for search button on hover */
+  .searchbar button:hover {
+    background-color: #e5e5e5;
+  }
 
 #search {
   width: 30%;  /* search bar width */
@@ -158,8 +180,6 @@
   background-color: #ffffff;
   position: relative;
 }
-
-
 
 .dropdown-container {
   display: flex;
@@ -213,4 +233,4 @@
       </select>
     </div>
   </div>
-</div>
+
