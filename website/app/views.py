@@ -30,9 +30,19 @@ def home():
     recipe_query = db.session.query(Recipe)
     if request.content_type:
         search = request.args.get('search')
+        category = request.args.get('category')
+        difficulty = request.args.get('difficulty')
+
         if search:
             search = "%{}%".format(search)
             recipe_query = recipe_query.filter(Recipe.name.like(search))
+
+        if category:
+            recipe_query = recipe_query.filter(Recipe.category_id == category)
+
+        if difficulty:
+            recipe_query = recipe_query.filter(Recipe.difficulty_id == difficulty)
+        
     recipe_query = recipe_query.all()
     # create dictionary ready to store array of recipes
     recipe_json = {"recipes": []}
@@ -53,8 +63,10 @@ def home():
             "image": recipe.image,
             "ingredients": recipe.ingredients,
             "category_id": recipe.category_id,
-            "favorited" : favorited
-        }
+            "favorited" : favorited,
+            "category": recipe.category.name,
+            "difficulty": recipe.difficulty.difficulty
+        }          
         # append dicionary to list in recipes dictionary
         recipe_json["recipes"].append(thisdict)
 
