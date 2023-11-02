@@ -74,11 +74,47 @@ def home():
         return jsonify(recipe_json)
     return render_template("home.html", recipes=recipe_json)
 
+@views.route("/recipe/<int:recipe_id>",methods=['GET','POST'])
+@login_required
+def recipe(recipe_id):
+    recipe = Recipe.query.get(recipe_id)
+    # create dictionary ready to store array of recipes
+
+    # iterate through recipe_query, and assign db values to dictionary values for frontend
+    # each column name defined in the models is the column name in SQL
+    favorited = "true" if (current_user in recipe.users_who_favorited) else None
+    recipe = {
+        "id": recipe.id,
+        "user_id": recipe.user_id,
+        "name": recipe.name,
+        "instructions": recipe.instructions,
+        "hours": recipe.hours_to_make,
+        "minutes": recipe.minutes_to_make,
+        "calories": recipe.calories,
+        "description": recipe.description,
+        "image": recipe.image,
+        "ingredients": recipe.ingredients,
+        "category_id": recipe.category_id,
+        "favorited" : favorited,
+        "category": recipe.category.name,
+        "difficulty": recipe.difficulty.difficulty
+    }
+        # append dicionary to list in recipes dictionary
+
+    # if request.content_type:
+    #     return jsonify(recipe_json)
+    return render_template("recipe.html", recipe=recipe)
 
 # Oct 25 - Added Route for About Page
 @views.route("/about")
 @login_required
 def about():
+    return render_template("about.html")
+@views.route("/review",methods=['GET','POST'])
+@login_required
+def review():
+    if request.method == 'POST':
+        print(request.form)
     return render_template("about.html")
 
 
