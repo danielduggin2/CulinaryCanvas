@@ -113,6 +113,7 @@
     }
   };
 </script>
+
 <style>
   .sorting {
     display: flex;
@@ -120,31 +121,6 @@
     align-items: center; /* Center children horizontally */
     margin-top: 100px;
 }
-
-  .category-buttons {
-    display: flex;
-    justify-content: center; 
-    margin-top: 30px; /* Space between search bar and category buttons */
-}
-
-  .category-filter {
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 15px; /* This is the rounded edges for the buttons */
-    margin-right: 10px;  /* Spacing between the category buttons */
-    background-color: #ffffff;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.category-filter:last-child {
-  margin-right: 0; /* Remove the margin-right for the last category button so that it sits flush with the container*/
-}
-
-  .category-filter:hover {
-    background-color: #0056b3;
-    color: #ffffff;
-  }
   
   .searchbar {
     display: flex;
@@ -183,20 +159,58 @@
   position: relative;
 }
 
+
+
+.dropdown-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Space between dropdowns */
+  margin-top: 30px; /* Space between search bar and dropdowns */
+}
+
+.dropdown-container select {
+  width: 200px;
+  padding: 10px;
+  border: none;
+  border-radius: 15px; 
+  background-color: #ffffff;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  outline: none;
+  appearance: none; 
+  cursor: pointer;
+}
+
 </style>
 
 <!-- FILTER TESTING START -->
 <div class="sorting">
-<div class="searchbar">
-<input type="text" id="search" name="search" placeholder="Search" />
-<button class="searchButton" type="submit" onclick="search()">
-    <i class="fas fa-search"></i>
-</button>
+  <div class="searchbar">
+    <input type="text" id="search" name="search" placeholder="Search" />
+    <button class="searchButton" type="submit" onclick="search()">
+        <i class="fas fa-search"></i>
+    </button>
+  </div>
+  <div class="dropdown-container">
+    <!-- Category Dropdown -->
+    <div class="category-dropdown">
+      <select id="categorySelect">
+        <option value="" disabled selected>Select Category</option>
+        <option value="all">All Categories</option>
+        <option value="breakfast">Breakfast</option>
+        <option value="lunch">Lunch</option>
+        <option value="dinner">Dinner</option>
+      </select>
+    </div>
+    <!-- Difficulty Dropdown -->
+    <div class="difficulty-dropdown">
+      <select id="difficultySelect">
+        <option value="" disabled selected>Select Difficulties</option>
+        <option value="all">All Difficulty</option>
+        <option value="beginner">Beginner</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="advanced">Advanced</option>
+      </select>
+    </div>
+  </div>
 </div>
-<div class="category-buttons">
-<button class="category-filter" data-category="breakfast">Breakfast</button>
-<button class="category-filter" data-category="lunch">Lunch</button>
-<button class="category-filter" data-category="dinner">Dinner</button>
-</div>
-</div>
-
