@@ -1,4 +1,7 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+/>
 
 <script>
   // Function to be executed when the window loads
@@ -9,18 +12,21 @@
     let url = new URL(location);
     let state = document.querySelector(".recipe-container").innerHTML;
     history.replaceState({ html: state }, "", url);
-    let searchbar = document.querySelector("#search")
-    searchbar.addEventListener("keydown",(e)=>{
-      if (e.code === "Enter") {  //checks whether the pressed key is "Enter"
+    let searchbar = document.querySelector("#search");
+    searchbar.addEventListener("keydown", (e) => {
+      if (e.code === "Enter") {
+        //checks whether the pressed key is "Enter"
         search(e.target.value);
       }
-    })
+    });
   }
 
   // Function to render recipes dynamically based on the data received from the server
   function render_recipes(recipes) {
     // Remove existing recipe cards from the container
-    let current_recipes = document.querySelectorAll(".recipe-container > .recipe-card");
+    let current_recipes = document.querySelectorAll(
+      ".recipe-container > .recipe-card"
+    );
     current_recipes.forEach((element) => {
       element.remove();
     });
@@ -44,7 +50,9 @@
             </ul>
           </div>
           <p class="recipe-description">${recipe.name}</p>
-          <button class="save-button ${recipe.favorited ? "favorited" : ""}" onClick="favoriteToggle(${recipe.id})">${
+          <button class="save-button ${
+            recipe.favorited ? "favorited" : ""
+          }" onClick="favoriteToggle(${recipe.id})">${
           recipe.favorited ? "Saved" : "Save Recipe"
         }</button>
           <button class="info-button">More Info</button>
@@ -56,11 +64,15 @@
   function search() {
     // Get the search term from the input field
     search_term = document.querySelector("#search");
+    difficulty = document.querySelector("#difficultySelect");
+    category = document.querySelector("#categorySelect");
     // Make a GET request to the server with the search term as a query parameter
     fetch(
       "/home?" +
         new URLSearchParams({
           search: search_term.value,
+          category: category.value,
+          difficulty: difficulty.value,
         }),
       {
         method: "GET",
@@ -77,6 +89,8 @@
         let state = document.querySelector(".recipe-container").innerHTML;
         const url = new URL(location);
         url.searchParams.set("search", search_term.value);
+        url.searchParams.set("category", category.value);
+        url.searchParams.set("difficulty", difficulty.value);
         history.pushState({ html: state }, "", url);
       });
   }
@@ -140,9 +154,8 @@
     flex-direction: column;
     align-items: center;
     margin-top: 100px;
-}
+  }
 
-  
   .searchbar {
     display: flex;
     justify-content: center;
@@ -169,38 +182,37 @@
     background-color: #e5e5e5;
   }
 
-#search {
-  width: 30%;  /* search bar width */
-  padding: 10px 40px 10px 20px;
-  border: none;
-  border-radius: 25px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  font-size: 16px;
-  outline: none;
-  background-color: #ffffff;
-  position: relative;
-}
+  #search {
+    width: 30%; /* search bar width */
+    padding: 10px 40px 10px 20px;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    outline: none;
+    background-color: #ffffff;
+    position: relative;
+  }
 
-.dropdown-container {
-  display: flex;
-  justify-content: center;
-  gap: 20px; /* Space between dropdowns */
-  margin-top: 30px; /* Space between search bar and dropdowns */
-}
+  .dropdown-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between dropdowns */
+    margin-top: 30px; /* Space between search bar and dropdowns */
+  }
 
-.dropdown-container select {
-  width: 200px;
-  padding: 10px;
-  border: none;
-  border-radius: 15px; 
-  background-color: #ffffff;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  font-size: 16px;
-  outline: none;
-  appearance: none; 
-  cursor: pointer;
-}
-
+  .dropdown-container select {
+    width: 200px;
+    padding: 10px;
+    border: none;
+    border-radius: 15px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+  }
 </style>
 
 <!-- FILTER TESTING START -->
@@ -208,27 +220,27 @@
   <div class="searchbar">
     <input type="text" id="search" name="search" placeholder="Search" />
     <button class="searchButton" type="submit" onclick="search()">
-        <i class="fas fa-search"></i>
+      <i class="fas fa-search"></i>
     </button>
   </div>
   <div class="dropdown-container">
     <!-- Category Dropdown -->
     <div class="category-dropdown">
       <select id="categorySelect">
-        <option value="" >Select Category</option>
-        <option value="breakfast">Breakfast</option>
-        <option value="lunch">Lunch</option>
-        <option value="dinner">Dinner</option>
+        <option value="">Select Category</option>
+        <option value="1">Breakfast</option>
+        <option value="2">Lunch</option>
+        <option value="3">Dinner</option>
       </select>
     </div>
     <!-- Difficulty Dropdown -->
     <div class="difficulty-dropdown">
       <select id="difficultySelect">
-        <option value="" >Select Difficulties</option>
-        <option value="beginner">Beginner</option>
-        <option value="intermediate">Intermediate</option>
-        <option value="advanced">Advanced</option>
+        <option value="">Select Difficulties</option>
+        <option value="1">Beginner</option>
+        <option value="2">Intermediate</option>
+        <option value="3">Advanced</option>
       </select>
     </div>
   </div>
-
+</div>
