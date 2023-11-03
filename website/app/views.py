@@ -7,10 +7,12 @@ from flask import (
     session,
     jsonify,
 )
-from .models import Recipe
+from .models import Recipe,Review,User
 from . import db
 from flask_login import login_required, current_user
 import json
+from sqlalchemy import and_, or_
+from sqlalchemy.sql import func
 
 views = Blueprint("views", __name__)
 
@@ -78,8 +80,11 @@ def home():
 @login_required
 def recipe(recipe_id):
     recipe = Recipe.query.get(recipe_id)
+    reviews = recipe.reviews
     # create dictionary ready to store array of recipes
-
+    
+    rating_float = Recipe.query.with_entities(func.avg(Review.stars).label('average')).filter(Review.recipe_id==recipe_id).scalar()
+    rating = round(rating_float)
     # iterate through recipe_query, and assign db values to dictionary values for frontend
     # each column name defined in the models is the column name in SQL
     favorited = "true" if (current_user in recipe.users_who_favorited) else None
@@ -97,13 +102,24 @@ def recipe(recipe_id):
         "category_id": recipe.category_id,
         "favorited" : favorited,
         "category": recipe.category.name,
-        "difficulty": recipe.difficulty.difficulty
+        "difficulty": recipe.difficulty.difficulty,
+        "rating":rating
     }
+    review_json = {"reviews": []}
+    for review in reviews:
+        user = User.query.get(review.user_id)
+        thisdict = {
+            "user_id":review.user_id,
+            "username":user.username,
+            "stars":review.stars,
+            "review":review.review
+        }
+        review_json["reviews"].append(thisdict)
         # append dicionary to list in recipes dictionary
 
     # if request.content_type:
     #     return jsonify(recipe_json)
-    return render_template("recipe.html", recipe=recipe)
+    return render_template("recipe.html", recipe=recipe, reviews=review_json)
 
 # Oct 25 - Added Route for About Page
 @views.route("/about")
@@ -114,10 +130,35 @@ def about():
 @login_required
 def review():
     if request.method == 'POST':
-        print(request.form)
-    return render_template("about.html")
 
+        recipe_id = request.form.get('recipe_id')
+        star_value = request.form.get('star_value')
+        review = request.form.get('review')
+        existing_review = db.session.query(Review).filter(
+            and_(
+                Review.recipe_id==recipe_id,
+                Review.user_id==current_user.id
+            )
+        ).all()
+        print(existing_review)
+        
+        if not (existing_review):
+            new_review = Review(recipe_id=recipe_id, user_id=current_user.id, stars=star_value, review=review)
+            db.session.add(new_review)
+            db.session.commit()
 
+    return redirect(url_for('views.recipe',recipe_id=recipe_id))
+
+@views.route('/delete-review', methods=["POST"])
+def delete_review():
+    json_data = json.loads(request.data)
+    recipe_id = json_data['recipe_id']
+    
+    review = Review.query.get((recipe_id,current_user.id))
+    if review:
+        db.session.delete(review)
+        db.session.commit()
+    return jsonify({})
 # route for favorites - ANDRES CHECK THIS CODE PLEASE
 @views.route("/favorites")
 @login_required
@@ -187,20 +228,6 @@ def create():
         new_recipe = Recipe(user_id = current_user.id,name=name,instructions=instructions,hours_to_make=hours_to_make,minutes_to_make=minutes_to_make,calories=calories,description=description,image=image,ingredients=ingredients,category_id=category_id)
         db.session.add(new_recipe)
         db.session.commit()
-
-
-# id = db.Column(db.Integer, primary_key=True)
-#     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
-#     name = db.Column(db.String(50))
-#     instructions = db.Column(db.String(1000))  # instructions will be delimited by ¦
-#     hours_to_make = db.Column(db.Integer)
-#     minutes_to_make = db.Column(db.Integer)  # Time Formatting? HH:MM
-#     calories = db.Column(db.Integer)
-#     description = db.Column(db.String(1000))
-#     image = db.Column(db.String(200))
-#     ingredients = db.Column(db.String(1000))  # ingredients will be delimited by ¦
-#     category_id = db.Column(db.Integer, db.ForeignKey("category.id"))
-        
     return render_template("create.html")
 
 
@@ -228,37 +255,3 @@ def favoriteToggle():
     db.session.commit()
     return jsonify({"favorited":favorited})
 
-
-
-# Add a new route for the login page
-# @views.route("/login")
-# @login_required
-# def login_page():
-#     return render_template("login.html")
-
-
-# # Update the login route to handle form submission and redirect to 'home' on successful login
-# @views.route("/login", methods=["POST"])
-# @login_required
-# def login():
-#     username = request.form.get("username")
-#     password = request.form.get("password")
-
-#     # Check the credentials against a database or any authentication method you prefer.
-#     # If the credentials are valid, set up a session to keep the user logged in.
-
-#     # Example:
-#     #Ethan comment here: is below where I need to add the script that runs the queries to pull the usernames and passwords stored in db?
-#     if username == "example" and password == "password":
-#         # Here, you can use Flask's built-in session management.
-#         session["user"] = username
-
-#         # Redirect to the "home" route after successful login.
-#         return redirect(url_for("views.home"))
-#     else:
-#         return "Login failed"
-# #signup page-- working bri
-# @views.route("/signup")
-# @login_required
-# def signup_page():
-#     return render_template("signup.html")

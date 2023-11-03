@@ -1,0 +1,6 @@
+{% if review.user_id == current_user.id %}
+<button onclick="deleteReview({{recipe.id}})">delete</button>
+{% endif %}
+<p>{{review.username}}</p>
+<p>{{review.stars}}</p>
+<p>{{review.review}}</p>

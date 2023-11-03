@@ -13,28 +13,21 @@
 
     function startupFunction() {
     // Store the initial state of the recipe container in the browser's history
-    let ratingButtons = document.querySelectorAll(".fa-star");
-    let noStars = document.getElementById("noStars")
-    ratingButtons.forEach((button)=>{
+    let star_icons = document.querySelectorAll(".rating-icon");
+    let star_value = document.getElementById("star_value")
+    star_icons.forEach((button)=>{
         button.addEventListener("click", (e) => {
-            starAmount = e.target.getAttribute("value")
-            starOff = e.target.classList.contains("fa-regular")
-            if (!starOff){
-                noStars.setAttribute("value","1")
-            } else {
-                noStars.setAttribute("value","0")
-            }
-            let removeAll = false
-            for (let i=0; i < starAmount ; i++){
-                if  (starOff){
-                    ratingButtons[i].classList.remove("fa-regular")
-                    ratingButtons[i].classList.add("fa-solid")
-                } else {
-                    removeAll = true;
+            icon_value = e.target.getAttribute("value")
+            star_unclicked = e.target.classList.contains("fa-regular")
+            if  (star_unclicked){
+                star_value.setAttribute("value",icon_value)
+                for (let i=0; i < icon_value ; i++){
+                    star_icons[i].classList.remove("fa-regular")
+                    star_icons[i].classList.add("fa-solid")
                 }
-            }
-            if (removeAll){
-                ratingButtons.forEach((button)=>{
+            } else {
+                star_value.setAttribute("value","0")
+                star_icons.forEach((button)=>{
                     button.classList.add("fa-regular")
                     button.classList.remove("fa-solid")
                 })
@@ -42,9 +35,18 @@
         });
     })
     }
+    function deleteReview(recipe_id) {
+        fetch("/delete-review", {
+        method: "POST",
+        body: JSON.stringify({ recipe_id: recipe_id }),
+        }).then((_res) => {
+        window.location.href = "/recipe/"+recipe_id;
+        });
+    }
 </script>
 <button style="margin-top: 200px;">edit</button>
 <ul>
+<li>{{recipe.rating}}</li>
 <li>{{recipe.id}}</li>
 <li>{{recipe.user_id}}</li>
 <li>{{recipe.name}}</li>
@@ -62,32 +64,18 @@
 </ul>
 <form action="/review" method="POST">
 <div class="review-container">
-    <input type="hidden" id="noStars" name="noStars" value="1">
-    
-    <label>
-        <input type="radio" name="star" value="1" class="starRadio">
-        <i class="fa-regular fa-star" value="1"></i>
-    </label>
-    <label>
-        <input type="radio" name="star" value="2" class="starRadio">
-        <i class="fa-regular fa-star" value="2"> </i>
-    </label>
-    <label>
-        <input type="radio" name="star" value="3" class="starRadio">
-        <i class="fa-regular fa-star" value="3"> </i>
-    </label>
-    <label>
-        <input type="radio" name="star" value="4" class="starRadio">
-        <i class="fa-regular fa-star" value="4"> </i>
-    </label>
-    <label>
-        <input type="radio" name="star" value="5" class="starRadio">
-        <i class="fa-regular fa-star" value="5"> </i>
-    </label>
+    <input type="hidden" id="noStars" name="recipe_id" value="{{recipe.id}}">
+    <input type="hidden" id="star_value" name="star_value" value="0">
+    <i class="fa-regular fa-star rating-icon" value="1"></i>
+    <i class="fa-regular fa-star rating-icon" value="2"></i>
+    <i class="fa-regular fa-star rating-icon" value="3"></i>
+    <i class="fa-regular fa-star rating-icon" value="4"></i>
+    <i class="fa-regular fa-star rating-icon" value="5"></i>
     <input type="text" id="review" name="review">
-    
-    
 </div>
 <button type="submit">submit</button>
 </form>
+{% for review in reviews.reviews %}
+    {% include "review_card.html" %}
+{% endfor %}
 {%endblock%}
