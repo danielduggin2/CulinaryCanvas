@@ -16,14 +16,6 @@ from sqlalchemy.sql import func
 
 views = Blueprint("views", __name__)
 
-
-# test comment - bri
-# @views.route("/")
-# @login_required
-# def root():
-#     return render_template("home.html")
-
-
 # START: Define a route for the HTML pages
 @views.route("/")
 @views.route("/home",methods=['GET','POST'])
@@ -76,6 +68,62 @@ def home():
         return jsonify(recipe_json)
     return render_template("home.html", recipes=recipe_json)
 
+
+@views.route("/recipe/<int:recipe_id>/edit",methods=['GET','POST'])
+@login_required
+def recipe_edit(recipe_id):
+    recipe = Recipe.query.get(recipe_id)
+
+    if request.method == 'POST':
+
+        name = request.form.get('name')
+        instructions = request.form.get('instructions')
+        hours_to_make = request.form.get('hours_to_make')
+        minutes_to_make = request.form.get('minutes_to_make')
+        calories = request.form.get('calories')
+        description = request.form.get('description')
+        image = request.form.get('image')
+        ingredients = request.form.get('ingredients')
+        category_id = request.form.get('category_id')
+        difficulty_id = request.form.get('difficulty_id')
+
+        db.session.query(Recipe).filter(Recipe.id == recipe_id).update({
+            'name': name,
+            'instructions': instructions,
+            'hours_to_make': hours_to_make,
+            'minutes_to_make': minutes_to_make,
+            'calories': calories,
+            'description': description,
+            'image': image,
+            'ingredients': ingredients,
+            'category_id': category_id,
+            'difficulty_id': difficulty_id,
+            })
+        db.session.commit()
+
+        return redirect(url_for('views.recipe',recipe_id=recipe_id))
+    # create dictionary ready to store array of recipes
+    # iterate through recipe_query, and assign db values to dictionary values for frontend
+    # each column name defined in the models is the column name in SQL
+    recipe = {
+        "id": recipe.id,
+        "user_id": recipe.user_id,
+        "name": recipe.name,
+        "instructions": recipe.instructions,
+        "hours": recipe.hours_to_make,
+        "minutes": recipe.minutes_to_make,
+        "calories": recipe.calories,
+        "description": recipe.description,
+        "image": recipe.image,
+        "ingredients": recipe.ingredients,
+        "category_id": recipe.category_id,
+        "difficulty_id": recipe.difficulty_id,
+        "category": recipe.category.name,
+        "difficulty": recipe.difficulty.difficulty,
+    }
+    return render_template("edit.html", recipe=recipe)
+
+
 @views.route("/recipe/<int:recipe_id>",methods=['GET','POST'])
 @login_required
 def recipe(recipe_id):
@@ -116,9 +164,6 @@ def recipe(recipe_id):
         }
         review_json["reviews"].append(thisdict)
         # append dicionary to list in recipes dictionary
-
-    # if request.content_type:
-    #     return jsonify(recipe_json)
     return render_template("recipe.html", recipe=recipe, reviews=review_json)
 
 # Oct 25 - Added Route for About Page
@@ -126,6 +171,8 @@ def recipe(recipe_id):
 @login_required
 def about():
     return render_template("about.html")
+
+
 @views.route("/review",methods=['GET','POST'])
 @login_required
 def review():
@@ -140,13 +187,11 @@ def review():
                 Review.user_id==current_user.id
             )
         ).all()
-        print(existing_review)
-        
+
         if not (existing_review):
             new_review = Review(recipe_id=recipe_id, user_id=current_user.id, stars=star_value, review=review)
             db.session.add(new_review)
             db.session.commit()
-
     return redirect(url_for('views.recipe',recipe_id=recipe_id))
 
 @views.route('/delete-review', methods=["POST"])
@@ -159,18 +204,19 @@ def delete_review():
         db.session.delete(review)
         db.session.commit()
     return jsonify({})
+
 # route for favorites - ANDRES CHECK THIS CODE PLEASE
 @views.route("/favorites")
 @login_required
 def favorites():
-    # Query for all recipes (you can use the same code as in the "home" route)
-    recipe_query = db.session.query(Recipe).all()
-
-    # Create a dictionary to store the array of recipes
+    recipe_query = current_user.favorites
+    # create dictionary ready to store array of recipes
     recipe_json = {"recipes": []}
 
-    # Iterate through recipe_query and assign database values to dictionary values
+    # iterate through recipe_query, and assign db values to dictionary values for frontend
+    # each column name defined in the models is the column name in SQL
     for recipe in recipe_query:
+        favorited = "true" if (current_user in recipe.users_who_favorited) else None
         thisdict = {
             "id": recipe.id,
             "user_id": recipe.user_id,
@@ -183,17 +229,22 @@ def favorites():
             "image": recipe.image,
             "ingredients": recipe.ingredients,
             "category_id": recipe.category_id,
-        }
+            "favorited" : favorited,
+            "category": recipe.category.name,
+            "difficulty": recipe.difficulty.difficulty
+        }          
+        # append dicionary to list in recipes dictionary
         recipe_json["recipes"].append(thisdict)
 
-    return render_template("favorites.html", recipes=recipe_json)
+    if request.content_type:
+        return jsonify(recipe_json)
+    return render_template("home.html", recipes=recipe_json)
 
 
 # route for create
 @views.route("/create", methods=['GET','POST'])
 @login_required
 def create():
-    print(current_user.id)
     if request.method == 'POST':
         # get form data
         name = request.form.get('name')
@@ -224,7 +275,7 @@ def create():
             if (i < len(ingredient_list)-1):
                 ingredient_string = ingredient_string + '|'
         
-        
+
         new_recipe = Recipe(user_id = current_user.id,name=name,instructions=instructions,hours_to_make=hours_to_make,minutes_to_make=minutes_to_make,calories=calories,description=description,image=image,ingredients=ingredients,category_id=category_id)
         db.session.add(new_recipe)
         db.session.commit()
