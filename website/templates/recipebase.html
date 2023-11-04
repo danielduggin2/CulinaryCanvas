@@ -20,5 +20,5 @@
   </div>
   <p class="recipe-description">{{element.get('name')}}</p>
   <button class="save-button {{favoriteClass}}" onClick="favoriteToggle({{element.get('id')}})">{{favoriteButtonText}}</button>
-  <button class="info-button">More Info</button>
+  <button class="info-button" onClick="window.location.href='/recipe/{{element.get('id')}}'">More Info</button>
 </div>
