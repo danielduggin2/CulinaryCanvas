@@ -73,55 +73,58 @@ def home():
 @login_required
 def recipe_edit(recipe_id):
     recipe = Recipe.query.get(recipe_id)
+    if recipe.user_id == current_user.id:
+        if request.method == 'POST':
 
-    if request.method == 'POST':
+            name = request.form.get('name')
+            instructions = request.form.get('instructions')
+            hours_to_make = request.form.get('hours_to_make')
+            minutes_to_make = request.form.get('minutes_to_make')
+            calories = request.form.get('calories')
+            description = request.form.get('description')
+            image = request.form.get('image')
+            ingredients = request.form.get('ingredients')
+            category_id = request.form.get('category_id')
+            difficulty_id = request.form.get('difficulty_id')
 
-        name = request.form.get('name')
-        instructions = request.form.get('instructions')
-        hours_to_make = request.form.get('hours_to_make')
-        minutes_to_make = request.form.get('minutes_to_make')
-        calories = request.form.get('calories')
-        description = request.form.get('description')
-        image = request.form.get('image')
-        ingredients = request.form.get('ingredients')
-        category_id = request.form.get('category_id')
-        difficulty_id = request.form.get('difficulty_id')
+            db.session.query(Recipe).filter(Recipe.id == recipe_id).update({
+                'name': name,
+                'instructions': instructions,
+                'hours_to_make': hours_to_make,
+                'minutes_to_make': minutes_to_make,
+                'calories': calories,
+                'description': description,
+                'image': image,
+                'ingredients': ingredients,
+                'category_id': category_id,
+                'difficulty_id': difficulty_id,
+                })
+            db.session.commit()
 
-        db.session.query(Recipe).filter(Recipe.id == recipe_id).update({
-            'name': name,
-            'instructions': instructions,
-            'hours_to_make': hours_to_make,
-            'minutes_to_make': minutes_to_make,
-            'calories': calories,
-            'description': description,
-            'image': image,
-            'ingredients': ingredients,
-            'category_id': category_id,
-            'difficulty_id': difficulty_id,
-            })
-        db.session.commit()
-
-        return redirect(url_for('views.recipe',recipe_id=recipe_id))
+            return redirect(url_for('views.recipe',recipe_id=recipe_id))
+    
     # create dictionary ready to store array of recipes
     # iterate through recipe_query, and assign db values to dictionary values for frontend
     # each column name defined in the models is the column name in SQL
-    recipe = {
-        "id": recipe.id,
-        "user_id": recipe.user_id,
-        "name": recipe.name,
-        "instructions": recipe.instructions,
-        "hours": recipe.hours_to_make,
-        "minutes": recipe.minutes_to_make,
-        "calories": recipe.calories,
-        "description": recipe.description,
-        "image": recipe.image,
-        "ingredients": recipe.ingredients,
-        "category_id": recipe.category_id,
-        "difficulty_id": recipe.difficulty_id,
-        "category": recipe.category.name,
-        "difficulty": recipe.difficulty.difficulty,
-    }
-    return render_template("edit.html", recipe=recipe)
+        recipe = {
+            "id": recipe.id,
+            "user_id": recipe.user_id,
+            "name": recipe.name,
+            "instructions": recipe.instructions,
+            "hours": recipe.hours_to_make,
+            "minutes": recipe.minutes_to_make,
+            "calories": recipe.calories,
+            "description": recipe.description,
+            "image": recipe.image,
+            "ingredients": recipe.ingredients,
+            "category_id": recipe.category_id,
+            "difficulty_id": recipe.difficulty_id,
+            "category": recipe.category.name,
+            "difficulty": recipe.difficulty.difficulty,
+        }
+        return render_template("edit.html", recipe=recipe)
+    else:
+        return redirect(url_for('views.recipe',recipe_id=recipe_id))
 
 
 @views.route("/recipe/<int:recipe_id>",methods=['GET','POST'])
@@ -132,7 +135,10 @@ def recipe(recipe_id):
     # create dictionary ready to store array of recipes
     
     rating_float = Recipe.query.with_entities(func.avg(Review.stars).label('average')).filter(Review.recipe_id==recipe_id).scalar()
-    rating = round(rating_float)
+    if rating_float:
+        rating = round(rating_float)
+    else:
+        rating = 0
     # iterate through recipe_query, and assign db values to dictionary values for frontend
     # each column name defined in the models is the column name in SQL
     favorited = "true" if (current_user in recipe.users_who_favorited) else None

@@ -44,7 +44,10 @@
         });
     }
 </script>
-<a style="margin-top: 200px; display:block" href="/recipe/1/edit">edit</a>
+<div style="margin-top: 200px; display:block"></div>
+{% if current_user.id == recipe.user_id %}
+<a href="/recipe/{{recipe.id}}/edit">edit</a>
+{% endif %}
 <ul>
 <li>{{recipe.rating}}</li>
 <li>{{recipe.id}}</li>
