@@ -1,0 +1,135 @@
+{%extends "base.html"%} {%block content%}
+<div class="create-container">
+  <form method="POST" action="/recipe/{{recipe.id}}/edit">
+    <div class="form-group">
+    <label for="name">Recipe Name:</label>
+    <input type="text" id="name" name="name" required value="{{recipe.name}}"/><br /><br />
+    </div>
+    <div class="form-group">
+      <label for="instructions">Instructions (separated by '|'): </label>
+      <textarea
+        id="instructions"
+        name="instructions"
+        rows="4"
+        cols="50"
+        required
+      >{{recipe.instructions}}</textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="time_to_make">Time to Make:</label>
+      <div class="time-input">
+        <input
+          type="number"
+          id="hours_to_make"
+          name="hours_to_make"
+          value="{{recipe.hours}}"
+          placeholder="Hours"
+        />
+        <input
+          type="number"
+          id="minutes_to_make"
+          name="minutes_to_make"
+          value="{{recipe.minutes}}"
+          placeholder="Minutes"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="calories">Calories:</label>
+      <input type="number" id="calories" name="calories" value="{{recipe.calories}}"/>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea
+        id="description"
+        name="description"
+        rows="4"
+        cols="50"
+      >{{recipe.description}}</textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="image">Image URL:</label>
+      <input type="text" id="image" name="image" value="{{recipe.image}}"/>
+    </div>
+
+    <div class="form-group">
+      <label for="ingredients">Ingredients (separated by '|'): </label>
+      <textarea
+        id="ingredients"
+        name="ingredients"
+        rows="4"
+        cols="50"
+        required
+      >{{recipe.ingredients}}</textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="category_id">Category ID:</label>
+      <input type="number" id="category_id" name="category_id" value="{{recipe.category_id}}"/>
+    </div>
+
+    <div class="form-group">
+      <label for="difficulty">Difficulty ID:</label>
+      <input type="number" id="difficulty_id" name="difficulty_id" value="{{recipe.difficulty_id}}"/>
+    </div>
+
+    <input type="submit" value="Submit Recipe" class="submit-button" />
+  </form>
+</div>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .create-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 125px;
+    width: 400px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  .time-input {
+    display: flex;
+    gap: 10px;
+  }
+
+  .submit-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .submit-button:hover {
+    background-color: #0056b3;
+  }
+</style>
+{%endblock%}
