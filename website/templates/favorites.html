@@ -1,30 +1,6 @@
 {%extends "base.html"%} {%block content%}
 <form action="POST"></form>
-<style>
-  .category-buttons {
-    margin-top: 100px;
-    display: flex;
-    justify-content: space-around;
-    padding: 5px;
-  }
-
-  .category-filter {
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-  }
-
-  .category-filter:hover {
-    background-color: #0056b3;
-  }
-</style>
-<!-- FILTER TESTING START -->
-<div class="category-buttons">
-  <button class="category-filter" data-category="breakfast">Breakfast</button>
-  <button class="category-filter" data-category="lunch">Lunch</button>
-  <button class="category-filter" data-category="dinner">Dinner</button>
-</div>
-<!-- FILTER TESTING END -->
+{% include "searchbar.html" %}
 <div class="recipe-container">
   {% for element in recipes.get('recipes') %} {% include "recipebase.html" %} {%
   endfor %}
