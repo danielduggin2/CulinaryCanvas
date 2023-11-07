@@ -24,15 +24,23 @@
           id="hours_to_make"
           name="hours_to_make"
           placeholder="Hours"
+          min="0"
+          pattern="[0-9]+"
+          required
         />
         <input
           type="number"
           id="minutes_to_make"
           name="minutes_to_make"
           placeholder="Minutes"
+          min="0"
+          max="59"
+          pattern="[0-9]+"
+          required
         />
       </div>
     </div>
+    <!--above is fix for hours and minutes in create recipe section. Here we limit hours to 0 to positive and minutes 0-59-->
 
     <div class="form-group">
       <label for="calories">Calories:</label>
