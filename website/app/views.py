@@ -70,6 +70,7 @@ def home():
     return render_template("home.html", recipes=recipe_json)
 
 
+# <int:recipe_id> passing integer to this route and the name is integer_id
 @views.route("/recipe/<int:recipe_id>/edit", methods=["GET", "POST"])
 @login_required
 def recipe_edit(recipe_id):
@@ -296,6 +297,8 @@ def create():
             if i < len(ingredient_list) - 1:
                 ingredient_string = ingredient_string + "|"
 
+        # creating instance of a class and passing parameters, default value auto increments
+        # getting back an array of objects
         new_recipe = Recipe(
             user_id=current_user.id,
             name=name,
@@ -309,8 +312,10 @@ def create():
             category_id=category_id,
             difficulty_id=difficulty_id,
         )
+        # inserts this row, becomes part of database
         db.session.add(new_recipe)
         db.session.commit()
+        return redirect(url_for("views.recipe", recipe_id=new_recipe.id))
     return render_template("create.html")
 
 

@@ -57,17 +57,20 @@
       ></textarea>
     </div>
 
-    <!-- Difficulty testing -->
     <div class="form-group">
       <label for="difficulty">Difficulty:</label>
-      <select id="difficulty_id" name="difficulty_id" required>
+      <select
+        class="select-button"
+        id="difficulty_id"
+        name="difficulty_id"
+        required
+      >
         <option value="">Select Difficulty</option>
         <option value="1">Beginner</option>
         <option value="2">Intermediate</option>
         <option value="3">Advanced</option>
       </select>
     </div>
-    <!-- Difficulty testing end -->
 
     <div class="form-group">
       <label for="image">Image URL:</label>
@@ -87,7 +90,12 @@
 
     <div class="form-group">
       <label for="category_id">Category ID (1-3):</label>
-      <select id="category_id" name="category_id" required>
+      <select
+        class="select-button"
+        id="category_id"
+        name="category_id"
+        required
+      >
         <option value="">Select Category</option>
         <option value="1">Breakfast</option>
         <option value="2">Lunch</option>
@@ -145,10 +153,25 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    transition: background-color 0.3s;
   }
 
   .submit-button:hover {
-    background-color: #0056b3;
+    background-color: #2980b9;
+  }
+
+  .select-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .select-button:hover {
+    background-color: #2980b9;
   }
 </style>
 {%endblock%}
