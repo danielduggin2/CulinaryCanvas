@@ -3,82 +3,174 @@
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
 />
-<style>
-    .starRadio {
-        display: none;
-    }
-</style>
 <script>
-    window.onload = startupFunction;
+  window.onload = startupFunction;
 
-    function startupFunction() {
+  function startupFunction() {
     // Store the initial state of the recipe container in the browser's history
     let star_icons = document.querySelectorAll(".rating-icon");
-    let star_value = document.getElementById("star_value")
-    star_icons.forEach((button)=>{
-        button.addEventListener("click", (e) => {
-            icon_value = e.target.getAttribute("value")
-            star_unclicked = e.target.classList.contains("fa-regular")
-            if  (star_unclicked){
-                star_value.setAttribute("value",icon_value)
-                for (let i=0; i < icon_value ; i++){
-                    star_icons[i].classList.remove("fa-regular")
-                    star_icons[i].classList.add("fa-solid")
-                }
-            } else {
-                star_value.setAttribute("value","0")
-                star_icons.forEach((button)=>{
-                    button.classList.add("fa-regular")
-                    button.classList.remove("fa-solid")
-                })
-            }
-        });
-    })
-    }
-    function deleteReview(recipe_id) {
-        fetch("/delete-review", {
-        method: "POST",
-        body: JSON.stringify({ recipe_id: recipe_id }),
-        }).then((_res) => {
-        window.location.href = "/recipe/"+recipe_id;
-        });
-    }
+    let star_value = document.getElementById("star_value");
+    star_icons.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        icon_value = e.target.getAttribute("value");
+        star_unclicked = e.target.classList.contains("fa-regular");
+        if (star_unclicked) {
+          star_value.setAttribute("value", icon_value);
+          for (let i = 0; i < icon_value; i++) {
+            star_icons[i].classList.remove("fa-regular");
+            star_icons[i].classList.add("fa-solid");
+          }
+        } else {
+          star_value.setAttribute("value", "0");
+          star_icons.forEach((button) => {
+            button.classList.add("fa-regular");
+            button.classList.remove("fa-solid");
+          });
+        }
+      });
+    });
+  }
+  function deleteReview(recipe_id) {
+    fetch("/delete-review", {
+      method: "POST",
+      body: JSON.stringify({ recipe_id: recipe_id }),
+    }).then((_res) => {
+      window.location.href = "/recipe/" + recipe_id;
+    });
+  }
 </script>
-<div style="margin-top: 200px; display:block"></div>
-{% if current_user.id == recipe.user_id %}
-<a href="/recipe/{{recipe.id}}/edit">edit</a>
-{% endif %}
-<ul>
-<li>{{recipe.rating}}</li>
-<li>{{recipe.id}}</li>
-<li>{{recipe.user_id}}</li>
-<li>{{recipe.name}}</li>
-<li>{{recipe.instructions}}</li>
-<li>{{recipe.hours}}</li>
-<li>{{recipe.minutes}}</li>
-<li>{{recipe.calories}}</li>
-<li>{{recipe.description}}</li>
-<li>{{recipe.image}}</li>
-<li>{{recipe.ingredients}}</li>
-<li>{{recipe.category_id}}</li>
-<li>{{recipe.favorited}}</li>
-<li>{{recipe.category}}</li>
-<li>{{recipe.difficulty}}<li>
-</ul>
-<form action="/review" method="POST">
-<div class="review-container">
-    <input type="hidden" id="noStars" name="recipe_id" value="{{recipe.id}}">
-    <input type="hidden" id="star_value" name="star_value" value="0">
-    <i class="fa-regular fa-star rating-icon" value="1"></i>
-    <i class="fa-regular fa-star rating-icon" value="2"></i>
-    <i class="fa-regular fa-star rating-icon" value="3"></i>
-    <i class="fa-regular fa-star rating-icon" value="4"></i>
-    <i class="fa-regular fa-star rating-icon" value="5"></i>
-    <input type="text" id="review" name="review">
+<style>
+  .starRadio {
+    display: none;
+  }
+
+  .recipe-info-container {
+    margin-top: 120px; /* Adjust margin-top as needed */
+    max-width: 600px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .info-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .info-list li {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  a {
+    text-decoration: none;
+    color: #007bff; /* Adjust the link color as needed */
+  }
+
+  .review-container {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  .rating-icon {
+    font-size: 24px;
+    color: #ffcc00; /* Adjust the star color as needed */
+    cursor: pointer;
+    margin-right: 5px;
+  }
+
+  #review {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  button[type="submit"] {
+    background-color: #007bff; /* Button background color */
+    color: #fff; /* Button text color */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #0056b3; /* Adjust button hover color as needed */
+  }
+
+  @media (max-width: 600px) {
+    .recipe-info-container {
+      padding: 10px; /* Reduce padding */
+      text-align: center;
+      display: block;
+    }
+
+    .info-list li {
+      font-size: 14px; /* Reduce font size */
+      padding-bottom: 3px; /* Reduce padding below the text and line */
+      text-align: center;
+    }
+
+    #review {
+      width: 100%;
+      padding: 8px; /* Reduce padding */
+    }
+
+    button[type="submit"] {
+      padding: 8px 16px; /* Reduce padding */
+      font-size: 14px; /* Reduce font size */
+    }
+  }
+</style>
+<div class="recipe-info-container">
+  {% if current_user.id == recipe.user_id %}
+  <a href="/recipe/{{recipe.id}}/edit">edit</a>
+  {% endif %}
+  <ul class="info-list">
+    <li>{{recipe.rating}}</li>
+    <li>{{recipe.id}}</li>
+    <li>{{recipe.user_id}}</li>
+    <li>{{recipe.name}}</li>
+    <li>{{recipe.instructions}}</li>
+    <li>{{recipe.hours}}</li>
+    <li>{{recipe.minutes}}</li>
+    <li>{{recipe.calories}}</li>
+    <li>{{recipe.description}}</li>
+    <li>{{recipe.image}}</li>
+    <li>{{recipe.ingredients}}</li>
+    <li>{{recipe.category_id}}</li>
+    <li>{{recipe.favorited}}</li>
+    <li>{{recipe.category}}</li>
+    <li>{{recipe.difficulty}}</li>
+  </ul>
+
+  <form action="/review" method="POST">
+    <div class="review-container">
+      <input
+        type="hidden"
+        id="noStars"
+        name="recipe_id"
+        value="{{recipe.id}}"
+      />
+      <input type="hidden" id="star_value" name="star_value" value="0" />
+      <i class="fa-regular fa-star rating-icon" value="1"></i>
+      <i class="fa-regular fa-star rating-icon" value="2"></i>
+      <i class="fa-regular fa-star rating-icon" value="3"></i>
+      <i class="fa-regular fa-star rating-icon" value="4"></i>
+      <i class="fa-regular fa-star rating-icon" value="5"></i>
+      <input type="text" id="review" name="review" />
+    </div>
+    <button type="submit">submit</button>
+  </form>
+  {% for review in reviews.reviews %} {% include "review_card.html" %} {% endfor
+  %} {%endblock%}
 </div>
-<button type="submit">submit</button>
-</form>
-{% for review in reviews.reviews %}
-    {% include "review_card.html" %}
-{% endfor %}
-{%endblock%}
