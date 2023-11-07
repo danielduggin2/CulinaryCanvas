@@ -262,7 +262,8 @@ def create():
         image = request.form.get('image')
         ingredients = request.form.get('ingredients')
         category_id = request.form.get('category_id')
-        
+        difficulty_id = request.form.get('difficulty')
+
         # split the lists of instructions and ingredients by the delimiter (temporary solution until tag input is set up)
         instruction_list = instructions.split('|')
         ingredient_list = ingredients.split('|')
@@ -282,7 +283,7 @@ def create():
                 ingredient_string = ingredient_string + '|'
         
 
-        new_recipe = Recipe(user_id = current_user.id,name=name,instructions=instructions,hours_to_make=hours_to_make,minutes_to_make=minutes_to_make,calories=calories,description=description,image=image,ingredients=ingredients,category_id=category_id)
+        new_recipe = Recipe(user_id = current_user.id,name=name,instructions=instructions,hours_to_make=hours_to_make,minutes_to_make=minutes_to_make,calories=calories,description=description,image=image,ingredients=ingredients,category_id=category_id,difficulty_id=difficulty_id)
         db.session.add(new_recipe)
         db.session.commit()
     return render_template("create.html")
