@@ -59,9 +59,9 @@
         @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
 
         h1 {
-        position: relative;
-        right: -55px;
-        bottom: -15px;
+        position: absolute;
+        right:560px;
+        
         padding: 0;
         margin: 10;
         font-family: "Raleway", sans-serif;
@@ -74,34 +74,7 @@
         
         }
 
-        .one h1 {
-        text-align: center;
-        text-transform: uppercase;
-        padding-bottom: 5px;
-        }
-        .one h1:before {
-        width: 28px;
-        height: 5px;
-        display: block;
-        content: "";
-        position: absolute;
-        bottom: 3px;
-        left: 50%;
-        margin-left: -14px;
-        background-color: #cd5e09;
-        }
-
-        .one h1:after {
-            width: 100px;
-            height: 1px;
-            display: block;
-            content: "";
-            position: relative;
-            margin-top: 25px;
-            left: 50%;
-            margin-left: -50px;
-            background-color: #e17e22;
-        }
+        
 
         #cooking  {
             position: absolute;
@@ -344,7 +317,24 @@
             opacity: 0;
         }
 }
+
+@media screen and (max-width: 1100px) {
         
+        #cooking {
+          display: none;
+        }
+        h1{
+            position: absolute;
+            right:130px;
+        }
+        
+        
+      }
+
+      
+
+      
+     
 
 
 
