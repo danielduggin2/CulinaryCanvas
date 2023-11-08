@@ -2,12 +2,14 @@ window.onload = startupFunction;
 
 function startupFunction() {
     let searchbar = document.querySelector("#search");
-    searchbar.addEventListener("keydown", (e) => {
+    if (searchbar != null){
+      searchbar.addEventListener("keydown", (e) => {
         if (e.code === "Enter") {
             //checks whether the pressed key is "Enter"
             search(e.target.value);
         }
-    });
+      });
+    }
     let star_icons = document.querySelectorAll(".rating-icon");
     let star_value = document.getElementById("star_value");
     star_icons.forEach((button) => {
@@ -29,6 +31,14 @@ function startupFunction() {
         }
       });
     });
+    let rating_div_value = document.querySelector(".rating").getAttribute("value");
+    let div = document.querySelectorAll(".rating > .fa-star");
+    div.forEach((star) => {
+      if (star.getAttribute("value") <= rating_div_value){
+        star.classList.add("fa-regular");
+        star.classList.add("fa-solid");
+      }
+    })
 }
 
 function deleteReview(recipe_id) {
