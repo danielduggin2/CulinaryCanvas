@@ -152,6 +152,7 @@ def recipe(recipe_id):
     recipe = {
         "id": recipe.id,
         "user_id": recipe.user_id,
+        "username": recipe.user.username,
         "name": recipe.name,
         "instructions": recipe.instructions,
         "hours": recipe.hours_to_make,
