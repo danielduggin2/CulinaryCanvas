@@ -53,18 +53,6 @@ right: 10px;  -->
   }
 </style>
 
-<div class="flash-messages-container">
-  {% with messages = get_flashed_messages(with_categories=true) %} {% if
-  messages %} {% for category, message in messages %}
-  <div
-    class="flash-message {% if category =='error' %} error-flash-message {% else %} success-flash-message {% endif %}"
-    role="alert"
-  >
-    <p>{{ message }}</p>
-    <button type="button" class="flash-message-close">&times;</button>
-  </div>
-  {% endfor %} {% endif %} {% endwith %}
-</div>
 
 <div class="flash-messages-container">
   {% with messages = get_flashed_messages(with_categories=true) %} {% if
