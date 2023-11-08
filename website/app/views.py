@@ -11,7 +11,7 @@ from .models import Recipe, Review, User
 from . import db
 from flask_login import login_required, current_user
 import json
-from sqlalchemy import and_, or_
+from sqlalchemy import and_, or_, select
 from sqlalchemy.sql import func
 
 views = Blueprint("views", __name__)
@@ -230,10 +230,27 @@ def delete_review():
 @views.route("/favorites")
 @login_required
 def favorites():
-    recipe_query = current_user.favorites
+    # recipe_query = current_user.favorites
+    recipe_query = select(Recipe).join(User.favorites).where(User.id == current_user.id)
+
+    if request.content_type:
+        search = request.args.get("search")
+        category = request.args.get("category")
+        difficulty = request.args.get("difficulty")
+
+        if search:
+            recipe_query = recipe_query.where(Recipe.name.like(f"%{search}%"))
+
+        if category:
+            recipe_query = recipe_query.where(Recipe.category_id == category)
+
+        if difficulty:
+            recipe_query = recipe_query.where(Recipe.difficulty_id == difficulty)
+
+    recipe_query = db.session.execute(recipe_query).scalars()
+
     # create dictionary ready to store array of recipes
     recipe_json = {"recipes": []}
-
     # iterate through recipe_query, and assign db values to dictionary values for frontend
     # each column name defined in the models is the column name in SQL
     for recipe in recipe_query:
@@ -256,10 +273,9 @@ def favorites():
         }
         # append dicionary to list in recipes dictionary
         recipe_json["recipes"].append(thisdict)
-
     if request.content_type:
         return jsonify(recipe_json)
-    return render_template("home.html", recipes=recipe_json)
+    return render_template("favorites.html", recipes=recipe_json)
 
 
 # route for create
