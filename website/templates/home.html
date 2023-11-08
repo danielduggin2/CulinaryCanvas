@@ -1,5 +1,10 @@
 {%extends "base.html"%} {%block content%}
 <form method="POST"></form>
+<script
+src="../static/homeSearchBar.js"
+type="text/javascript"
+charset="utf-8"
+></script>
 {% include "searchbar.html" %}
 <div class="recipe-container">
   {% for element in recipes.get('recipes') %} {% include "recipebase.html" %} {%
