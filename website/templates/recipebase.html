@@ -10,9 +10,11 @@ Recipe" %} {%endif%}
   <div class="recipe-details">
     <ul>
       <li>
-        Time: {% if element.get('hours') > 0 %} {{element.get('hours')}} hours,
-        {% endif %} {{element.get('minutes')}} minutes
+        Time: {% if element.get('hours') == 1 %} 1 hour, {% elif
+        element.get('hours') > 1 %} {{element.get('hours')}} hours, {% endif %}
+        {{element.get('minutes')}} minutes
       </li>
+
       <li>Difficulty: {{element.get('difficulty')}}</li>
       <li>Category: {{element.get('category')}}</li>
       <li>Calories: {{element.get('calories')}}</li>
