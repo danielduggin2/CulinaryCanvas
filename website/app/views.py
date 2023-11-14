@@ -351,15 +351,27 @@ def profile():
 @views.route("/favoriteToggle", methods=["GET", "POST"])
 @login_required
 def favoriteToggle():
+    # Extracting recipe_id from incoming JSON data
     recipe_id = json.loads(request.data)["recipe_id"]
 
+    # Query the Recipe model using the recipe_id
     recipe = Recipe.query.get(recipe_id)
+    
+    # Flag indicating whether the recipe is favorited or unfavorited
     favorited = 1
+
+    # Check if the recipe is in the current user's favorites
     if recipe in current_user.favorites:
+        # If already favorited, remove it from favorites
         favorited = 0
         current_user.favorites.pop(current_user.favorites.index(recipe))
     else:
+        # If not favorited, add it to favorites
         current_user.favorites.append(recipe)
         db.session.add(recipe)
+    
+    # Commit changes to the database
     db.session.commit()
+
+    # Return JSON response indicating the new favorite status
     return jsonify({"favorited": favorited})
