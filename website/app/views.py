@@ -6,6 +6,7 @@ from flask import (
     request,
     session,
     jsonify,
+    flash
 )
 from .models import Recipe, Review, User
 from . import db
@@ -112,6 +113,7 @@ def recipe_edit(recipe_id):
         recipe = {
             "id": recipe.id,
             "user_id": recipe.user_id,
+            "username": recipe.user.username,
             "name": recipe.name,
             "instructions": recipe.instructions,
             "hours": recipe.hours_to_make,
@@ -212,6 +214,8 @@ def review():
             )
             db.session.add(new_review)
             db.session.commit()
+        else:
+            flash('You can only write one review per Recipe!', category='error')
     return redirect(url_for("views.recipe", recipe_id=recipe_id))
 
 

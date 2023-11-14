@@ -21,15 +21,13 @@ def login():
         user = User.query.filter_by(username=username).first()
         if user:
             if check_password_hash(user.password, password):
-                #flash('Logged in successfully!', category='success') #commented out all these flash lines for now!!!
+                flash('Logged in successfully!', category='success') #commented out all these flash lines for now!!!
                 login_user(user, remember=True)
                 return redirect(url_for('views.home'))
             else:
-                print("wrong password")
-                #flash('Incorrect password, try again.', category='error')
+                flash('Incorrect password, try again.', category='error')
         else:
-            print("email does not exist")
-            # flash('Email does not exist', category='error')
+            flash('Email does not exist', category='error')
     return render_template("login.html", user=current_user)
 
 @auth.route('/logout')
@@ -56,7 +54,6 @@ def sign_up():
 
 
         if user_email:
-            print("user exists")
             flash('Email already exists', category='error')
         elif user_name:
             flash('Username is already taken.', category='error')
@@ -77,7 +74,7 @@ def sign_up():
             db.session.commit()
             # Log in the new user
             login_user(new_user, remember=True)
-            #flash('Account Created!', category='success')
+            flash('Account Created!', category='success')
             return redirect(url_for('views.home'))
         
             
