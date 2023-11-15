@@ -108,7 +108,7 @@ function render_recipes(recipes) {
       });
     }
     else{
-      container.innerHTML = "<p class = "error-message">No results found</p>"
+      container.innerHTML = '<p class = "error-message">No results found</p>'
     }
 }
 
