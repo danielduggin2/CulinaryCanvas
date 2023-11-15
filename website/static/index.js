@@ -71,39 +71,44 @@ function handleSaveButton(favorited, button) {
 }
 function render_recipes(recipes) {
     // Remove existing recipe cards from the container
-    let current_recipes = document.querySelectorAll(
-        ".recipe-container > .recipe-card"
-    );
-    current_recipes.forEach((element) => {
-        element.remove();
-    });
+
     // Select the recipe container element
     let container = document.querySelector(".recipe-container");
-    // Iterate over the recipes and generate HTML for each recipe card
-    recipes.forEach((recipe) => {
-        container.innerHTML =
-        container.innerHTML +
-        `
-        <div class="recipe-card">
-            <img
-            src="../static/Images/chicken-and-waffle.webp"
-            alt="chicken-and-waffle"
-            />
-            <div class="recipe-details" date-category="">
-            <ul>
-                <li>Time: ${recipe.minutes} minutes</li>
-                <li>Difficulty: ${recipe.difficulty}</li>
-                <li>Category: ${recipe.category}</li>
-                <li>Calories: ${recipe.calories}</li>
-            </ul>
-            </div>
-            <p class="recipe-description">${recipe.name}</p>
-            <button class="save-button ${
-            recipe.favorited ? "favorited" : ""
-            }" onClick="favoriteToggle(${recipe.id})">${
-            recipe.favorited ? "Saved" : "Save Recipe"
-        }</button>
-            <button class="info-button" onClick="window.location.href='/recipe/${recipe.id}'">More Info</button>
-        </div>`;
-    });
+    while (container.firstChild) {
+    container.removeChild(container.firstChild);
 }
+    // Iterate over the recipes and generate HTML for each recipe card
+    if(recipes.length > 0){
+      recipes.forEach((recipe) => {
+          container.innerHTML =
+          container.innerHTML +
+      
+          `
+          <div class="recipe-card">
+              <img
+              src="../static/Images/chicken-and-waffle.webp"
+              alt="chicken-and-waffle"
+              />
+              <div class="recipe-details" date-category="">
+              <ul>
+                  <li>Time: ${recipe.minutes} minutes</li>
+                  <li>Difficulty: ${recipe.difficulty}</li>
+                  <li>Category: ${recipe.category}</li>
+                  <li>Calories: ${recipe.calories}</li>
+              </ul>
+              </div>
+              <p class="recipe-description">${recipe.name}</p>
+              <button class="save-button ${
+              recipe.favorited ? "favorited" : ""
+              }" onClick="favoriteToggle(${recipe.id})">${
+              recipe.favorited ? "Saved" : "Save Recipe"
+          }</button>
+              <button class="info-button" onClick="window.location.href='/recipe/${recipe.id}'">More Info</button>
+          </div>`;
+      });
+    }
+    else{
+      container.innerHTML = "<p class = "error-message">No results found</p>"
+    }
+}
+
