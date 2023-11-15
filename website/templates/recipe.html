@@ -113,7 +113,7 @@
 
 <div class="recipe-info-container">
   {% if current_user.id == recipe.user_id %}
-    <a href="/recipe/{{ recipe.id }}/edit" class="edit-recipe-link">
+    <a href="/edit/{{ recipe.id }}" class="edit-recipe-link">
       <i class="fas fa-edit"></i> Edit
     </a>
   {% endif %}
