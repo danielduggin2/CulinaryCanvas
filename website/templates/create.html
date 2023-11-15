@@ -1,6 +1,8 @@
-{%extends "base.html"%} {%block content%}
+{% extends "base.html" %} 
+{% block content %}
 <div class="create-container">
-  <form method="POST" action="/create">
+  <h2>Create Recipe</h2>
+  <form method="POST" action="/create" class="recipe-form">
     <div class="form-group">
       <label for="name">Recipe Name:</label>
       <input type="text" id="name" name="name" required /><br /><br />
@@ -54,21 +56,6 @@
     <!--changed calories to only accept 0 and positive integer values. may need make it only accept positive since food can't have 0 calories-->
 
     <div class="form-group">
-      <label for="difficulty">Difficulty:</label>
-      <select
-        class="select-button"
-        id="difficulty_id"
-        name="difficulty_id"
-        required
-      >
-        <option value="">Select Difficulty</option>
-        <option value="1">Beginner</option>
-        <option value="2">Intermediate</option>
-        <option value="3">Advanced</option>
-      </select>
-    </div>
-
-    <div class="form-group">
       <label for="image">Image URL:</label>
       <input type="text" id="image" name="image" />
     </div>
@@ -84,40 +71,56 @@
       ></textarea>
     </div>
 
-    <div class="form-group">
-      <label for="category_id">Category:</label>
-      <select
-        class="select-button"
-        id="category_id"
-        name="category_id"
-        required
-      >
-        <option value="">Select Category</option>
-        <option value="1">Breakfast</option>
-        <option value="2">Lunch</option>
-        <option value="3">Dinner</option>
-      </select>
+    <div class="form-group double">
+      <div class="difficulty-select">
+        <label for="difficulty">Difficulty:</label>
+        <select id="difficulty_id" name="difficulty_id" required>
+          <option value="">Select Difficulty</option>
+          <option value="1">Beginner</option>
+          <option value="2">Intermediate</option>
+          <option value="3">Advanced</option>
+        </select>
+      </div>
+      <div class="category-select">
+        <label for="category_id">Category:</label>
+        <select id="category_id" name="category_id" required>
+          <option value="">Select Category</option>
+          <option value="1">Breakfast</option>
+          <option value="2">Lunch</option>
+          <option value="3">Dinner</option>
+        </select>
+      </div>
     </div>
     <!--above limits the category ID selection to between 1 and 3, so no bugs happen when you select negative or above our set IDs-->
 
-    <input type="submit" value="Submit Recipe" class="submit-button" />
+    <button type="submit" class="submit-button">Submit Recipe</button>
   </form>
 </div>
 <style>
   .create-container {
-    display: flex;
-    flex-direction: column;
-    margin-top: 125px;
-    width: 600px;
-    padding: 20px;
-    border: 1px solid #ccc;
+    max-width: 800px;
+    padding: 30px;
+    margin: 0 auto; 
+    background-color: #f3f0eb; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 130px; /* change this margin to adjust where the edit box sits on the screen compared to the nav bar */
     border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #604c3e;
   }
 
-  .form-group {
-    margin-bottom: 20px;
+  .recipe-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .form-group.double {
+    display: flex;
+    gap: 20px;
+  }
+
+  .difficulty-select, .category-select {
+    flex: 1;
   }
 
   label {
@@ -142,10 +145,10 @@
   }
 
   .submit-button {
-    background-color: #007bff;
+    background-color: #8b6b61;
     color: #fff;
     padding: 10px 20px;
-    border: none;
+    border: 1px solid #ddd;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
@@ -153,17 +156,15 @@
   }
 
   .submit-button:hover {
-    background-color: #2980b9;
+    background-color: #d2b396; 
   }
 
   .select-button {
-    background-color: #007bff;
-    color: #fff;
+    width: 100%; 
     padding: 10px;
-    border: none;
-    border-radius: 5px;
+    border: 1px solid #ddd; 
+    border-radius: 5px; 
     cursor: pointer;
-    transition: background-color 0.3s;
   }
 
   .select-button:hover {
