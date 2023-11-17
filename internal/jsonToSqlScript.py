@@ -1,50 +1,71 @@
 import json
+import os
 
-#open json file
-recipe_json = open("CulinaryCanvas/internal/recipe.json", "r").read()
+# Get the Flask app's working directory
+app_dir = os.path.dirname(os.path.abspath(__file__))
 
-#open sql file
-f = open("CulinaryCanvas/internal/populateRecipes.sql", "w",encoding='utf-8')
+# Construct the absolute path to the 'recipe.json' file
+json_file_path = os.path.join(app_dir, "recipe.json")
 
+# Construct the absolute path to the 'defaultState.sql' file
+sql_file_path = os.path.join(app_dir, "defaultState.sql")
 
-script_string = '''INSERT INTO recipe (user_id,name,instructions,hours_to_make,minutes_to_make,calories,description,image,ingredients,category_id)
+# Open json file
+recipe_json = open(json_file_path, "r").read()
+
+# Open sql file
+f = open(sql_file_path, "w", encoding="utf-8")
+
+# Mapping dictionaries for difficulty levels and categories
+difficulty_mapping = {
+    "beginner": 1,
+    "intermediate": 2,
+    "advanced": 3,
+}
+
+category_mapping = {
+    "breakfast": 1,
+    "lunch": 2,
+    "dinner": 3,
+}
+
+# Initialize the string with the beginning of an SQL INSERT statement
+script_string = """
+--INSERT CATEGORIES
+INSERT INTO category (id, name) VALUES(1, 'Breakfast');
+INSERT INTO category (id, name) VALUES(2, 'Lunch');
+INSERT INTO category (id, name) VALUES(3, 'Dinner');
+
+--INSERT DIFFICULTIES
+INSERT INTO difficulty (id, difficulty) VALUES(1, 'Beginner');
+INSERT INTO difficulty (id, difficulty) VALUES(2, 'Intermediate');
+INSERT INTO difficulty (id, difficulty) VALUES(3, 'Advanced');
+
+INSERT INTO recipe (user_id, name, instructions, hours_to_make, minutes_to_make, calories, description, image, ingredients, category_id, difficulty_id)
 VALUES 
-'''
-#iterate through all recipes in json
-for i,recipe in enumerate(json.loads(recipe_json)['recipes']):
+"""
 
-  #create a string delimited by ¦ from array of instructions
-  instructions_string = ""
-  for j,instruction in enumerate(recipe["instructions"]):
-    instructions_string = instructions_string + instruction
-    if j < len(recipe["instructions"])-1:
-      instructions_string = instructions_string + "¦"
+# Iterate through all recipes in json
+for i, recipe in enumerate(json.loads(recipe_json)["recipes"]):
+    # Create a string delimited by ¦ from the array of instructions
+    instructions_string = "¦".join(recipe["instructions"])
 
-  #create a string delimited by ¦ from array of ingredients
-  ingredients_string = ""
-  for j,ingredient in enumerate(recipe["ingredients"]):
-    ingredients_string = ingredients_string + ingredient
-    if j < len(recipe["ingredients"])-1:
-      ingredients_string = ingredients_string + "¦"
+    # Create a string delimited by ¦ from the array of ingredients
+    ingredients_string = "¦".join(recipe["ingredients"])
 
-  #formatted string to put json values in VALUES part of INSERT statement
-  script_string = script_string + '({user_id},"{name}","{instructions}",{hours_to_make},{minutes_to_make},{calories},"{description}","{image}","{ingredients}",{category_id})'.format(
-        user_id=1,
-        name=recipe["recipe_name"],
-        instructions=instructions_string,
-        hours_to_make=0,
-        minutes_to_make=int(''.join(filter(str.isdigit, recipe["time"]))),
-        calories=int(''.join(filter(str.isdigit, recipe["calories"]))),
-        description=recipe["description"],
-        image=recipe["image"],
-        ingredients=ingredients_string,
-        category_id=1)
-  
-  #insert ";" if last recipe, "," else
-  if i < len(json.loads(recipe_json)['recipes'])-1:
-    script_string = script_string + ",\n"
-  else:
-    script_string = script_string + ";\n"
+    # Map difficulty level and category to difficulty_id and category_id
+    difficulty_id = str(difficulty_mapping.get(recipe["difficulty"].lower(), 1))
+    category_id = str(category_mapping.get(recipe["category"].lower(), 1))
 
-#write to file
+    # Extract time and calories
+    time_to_make = int("".join(filter(str.isdigit, recipe.get("time", "0"))))
+    calories = int("".join(filter(str.isdigit, str(recipe.get("calories", "0")))))
+
+    # Formatted string to put JSON values in the VALUES part of the INSERT statement
+    script_string += f'({1},"{recipe["recipe_name"]}","{instructions_string}",{0},{time_to_make},{calories},"{recipe["description"]}","{recipe["image"]}","{ingredients_string}",{category_id},{difficulty_id})'
+
+    # Insert ";" if the last recipe, "," else
+    script_string += ",\n" if i < len(json.loads(recipe_json)["recipes"]) - 1 else ";\n"
+
+# Write to file
 f.write(script_string)

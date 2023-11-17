@@ -1,8 +1,9 @@
-{"recipes" : [
-  {
+{
+  "recipes": [
+    {
       "recipe_name": "Spaghetti Carbonara",
-      "category": "dinner",
-      "difficulty": "beginner",
+      "category": "Dinner",
+      "difficulty": "Beginner",
       "instructions": [
         "Step 1: Cook spaghetti in a large pot of salted boiling water until al dente.",
         "Step 2: In a bowl, whisk together eggs, grated Pecorino Romano cheese, and black pepper.",
@@ -12,7 +13,7 @@
         "Step 6: Serve immediately, garnished with more cheese and black pepper."
       ],
       "time": "20 minutes",
-      "calories": "450 calories per serving",
+      "calories": 450,
       "description": "A classic Italian pasta dish made with eggs, Pecorino Romano cheese, pancetta, and black pepper.",
       "image": "../static/Images/chicken-and-waffle.webp",
       "ingredients": [
@@ -23,11 +24,10 @@
         "Salt and black pepper to taste"
       ]
     },
-
     {
       "recipe_name": "Buffalo Chicken Mac and Cheese",
-      "category": "dinner",
-      "difficulty": "intermediate",
+      "category": "Dinner",
+      "difficulty": "Intermediate",
       "instructions": [
         "Step 1: Preheat your oven to 375°F (190°C).",
         "Step 2: Cook the macaroni in a large pot of salted boiling water until al dente. Drain and set aside.",
@@ -41,7 +41,7 @@
         "Step 10: Serve hot and garnish with chopped green onions."
       ],
       "time": "45 minutes",
-      "calories": "600 calories per serving",
+      "calories": 600,
       "description": "Buffalo Chicken Mac and Cheese is a delightful fusion of spicy buffalo chicken, creamy mac and cheese, and a hint of celery for a classic buffalo wing flavor.",
       "image": "../static/Images/chicken-and-waffle.webp",
       "ingredients": [
@@ -58,194 +58,184 @@
         "Chopped green onions for garnish"
       ]
     },
-
     {
-        "recipe_name": "Chicken Salad",
-        "category": "lunch",
-        "difficulty": "beginner",
-        "instructions": [
-          "Step 1: Cook and shred chicken breast.",
-          "Step 2: Mix shredded chicken with mayonnaise, diced celery, and grapes.",
-          "Step 3: Season with salt and pepper to taste.",
-          "Step 4: Serve chilled."
-        ],
-        "time": "15 minutes",
-        "calories": "300 calories per serving",
-        "description": "A simple and delicious chicken salad with a mix of flavors and textures.",
-        "image": "../static/Images/chicken-and-waffle.webp",
-        "ingredients": [
-          "2 cups cooked chicken breast, shredded",
-          "1/2 cup mayonnaise",
-          "1/2 cup diced celery",
-          "1/2 cup grapes, halved",
-          "Salt and pepper to taste"
-        ]
-      },
-
-      {
-        "recipe_name": "Spaghetti",
-        "category":"lunch",
-        "difficulty": "beginner",
-        "instructions": [
-          "Step 1: Cook spaghetti in a large pot of salted boiling water until al dente.",
-          "Step 2: In a skillet, heat olive oil and sauté minced garlic until fragrant.",
-          "Step 3: Add diced tomatoes and tomato sauce to the skillet. Simmer for a few minutes.",
-          "Step 4: Season the sauce with salt, black pepper, and red pepper flakes (adjust to taste).",
-          "Step 5: Toss cooked spaghetti with the sauce and fresh basil leaves.",
-          "Step 6: Serve hot, garnished with grated Parmesan cheese."
-        ],
-        "time": "25 minutes",
-        "calories": "350 calories per serving",
-        "description": "A simple and flavorful spaghetti dish with a homemade tomato sauce and fresh basil.",
-        "image": "../static/Images/chicken-and-waffle.webp",
-        "ingredients": [
-          "8 oz spaghetti",
-          "2 cloves garlic, minced",
-          "1 cup diced tomatoes",
-          "1 cup tomato sauce",
-          "2 tablespoons olive oil",
-          "Salt, black pepper, and red pepper flakes to taste",
-          "Fresh basil leaves for garnish",
-          "Grated Parmesan cheese for garnish"
-        ]
-      },
-
-      {
-        "recipe_name": "Empanadas",
-        "category":"dinner",
-        "difficulty": "intermediate",
-        "instructions": [
-          "Step 1: In a large mixing bowl, combine all-purpose flour, salt, and cold butter. Mix until it forms a crumbly texture.",
-          "Step 2: Gradually add cold water and knead the dough until it's smooth.",
-          "Step 3: Roll out the dough and cut it into circles.",
-          "Step 4: In a separate bowl, mix ground beef, diced onions, hard-boiled eggs, olives, and spices.",
-          "Step 5: Place the filling in the center of each dough circle and fold it in half, sealing the edges.",
-          "Step 6: Brush the empanadas with beaten egg and bake in a preheated oven until golden brown.",
-          "Step 7: Serve hot and enjoy!"
-        ],
-        "time": "50 minutes",
-        "calories": "250 calories per empanada",
-        "description": "Empanadas are a delightful Latin American snack with a flavorful beef filling and a flaky pastry crust.",
-        "image": "../static/Images/chicken-and-waffle.webp",
-        "ingredients": [
-          "2 cups all-purpose flour",
-          "1/2 teaspoon salt",
-          "1 cup cold butter, cubed",
-          "1/2 cup cold water",
-          "1/2 lb ground beef",
-          "1/2 cup diced onions",
-          "2 hard-boiled eggs, chopped",
-          "1/4 cup green olives, sliced",
-          "1/2 teaspoon cumin",
-          "Salt and pepper to taste",
-          "1 egg, beaten (for brushing)"
-        ]
-      },
-
-      {
-        "recipe_name": "Chicken and Waffles",
-        "category": "breakfast",
-        "difficulty": "advanced",
-        "instructions": [
-          "Step 1: Preheat your waffle iron according to the manufacturer's instructions.",
-          "Step 2: In a mixing bowl, combine all-purpose flour, sugar, baking powder, and salt.",
-          "Step 3: In a separate bowl, whisk together eggs, buttermilk, and melted butter.",
-          "Step 4: Pour the wet ingredients into the dry ingredients and stir until just combined.",
-          "Step 5: Pour the waffle batter into the preheated waffle iron and cook until golden and crisp.",
-          "Step 6: While the waffles are cooking, season chicken pieces with salt, black pepper, and paprika.",
-          "Step 7: Heat oil in a skillet and fry the chicken until it's crispy and cooked through.",
-          "Step 8: Serve the fried chicken on top of the freshly cooked waffles.",
-          "Step 9: Drizzle with maple syrup and garnish with chopped parsley."
-        ],
-        "time": "30 minutes",
-        "calories": "600 calories per serving",
-        "description": "Chicken and Waffles is a classic Southern dish that combines crispy fried chicken with fluffy waffles, topped with sweet maple syrup.",
-        "image": "../static/Images/chicken-and-waffle.webp",
-        "ingredients": [
-          "1 cup all-purpose flour",
-          "2 tablespoons sugar",
-          "1 teaspoon baking powder",
-          "1/2 teaspoon salt",
-          "2 large eggs",
-          "1 cup buttermilk",
-          "2 tablespoons melted butter",
-          "4 boneless, skinless chicken thighs",
-          "Salt, black pepper, and paprika to taste",
-          "Vegetable oil for frying",
-          "Maple syrup for drizzling",
-          "Chopped parsley for garnish"
-        ]
-      },
-
-      {
-        "recipe_name": "Eggs Benedict",
-        "category": "breakfast",
-        "difficulty": "advanced",
-        "instructions": [
-          "Step 1: Fill a saucepan with a few inches of water and bring it to a simmer.",
-          "Step 2: In a heatproof bowl, whisk together egg yolks, lemon juice, and a pinch of cayenne pepper.",
-          "Step 3: Place the bowl over the simmering water (double boiler) and whisk continuously until the mixture thickens to form a hollandaise sauce. Remove from heat and keep warm.",
-          "Step 4: In a separate saucepan, melt butter over low heat. Skim off and discard the white milk solids from the surface, leaving clarified butter. Keep it warm.",
-          "Step 5: In a skillet, bring water to a gentle simmer and add white vinegar. Create a whirlpool in the water using a spoon and gently slide in an egg. Poach the egg for about 3-4 minutes until the white is set and the yolk is still runny. Repeat for each egg.",
-          "Step 6: Toast English muffin halves until lightly browned.",
-          "Step 7: Place a slice of Canadian bacon on each muffin half, followed by a poached egg.",
-          "Step 8: Spoon hollandaise sauce generously over each egg.",
-          "Step 9: Garnish with chopped chives or parsley.",
-          "Step 10: Serve immediately and enjoy!"
-        ],
-        "time": "20 minutes",
-        "calories": "400 calories per serving",
-        "description": "Eggs Benedict is a classic brunch dish featuring poached eggs, Canadian bacon, and hollandaise sauce served on toasted English muffins.",
-        "image": "../static/Images/chicken-and-waffle.webp",
-        "ingredients": [
-          "4 large egg yolks",
-          "1 tablespoon lemon juice",
-          "A pinch of cayenne pepper",
-          "1/2 cup (1 stick) unsalted butter",
-          "2 teaspoons white vinegar",
-          "4 large eggs",
-          "2 English muffins, split and toasted",
-          "4 slices Canadian bacon",
-          "Chopped chives or parsley for garnish"
-        ]
-      },
-
-      {
-        "recipe_name": "Breakfast Burritos",
-        "category":"breakfast",
-        "difficulty": "intermediate",
-        "instructions": [
-          "Step 1: In a skillet, cook ground breakfast sausage over medium heat until browned and crumbled. Drain excess fat.",
-          "Step 2: Add diced onions, bell peppers, and minced garlic to the skillet. Cook until the vegetables are tender.",
-          "Step 3: In a bowl, whisk together eggs, salt, and black pepper. Pour the egg mixture into the skillet with the sausage and vegetables.",
-          "Step 4: Cook, stirring occasionally, until the eggs are scrambled and fully cooked.",
-          "Step 5: Warm the flour tortillas in a dry skillet or microwave until pliable.",
-          "Step 6: Place a portion of the egg and sausage mixture in the center of each tortilla.",
-          "Step 7: Sprinkle shredded cheese over the egg mixture and drizzle with hot sauce (if desired).",
-          "Step 8: Fold in the sides of the tortilla and then roll it up tightly to form a burrito.",
-          "Step 9: Serve the breakfast burritos with salsa and sour cream on the side.",
-          "Step 10: Enjoy your delicious breakfast burritos!"
-        ],
-        "time": "20 minutes",
-        "calories": "350 calories per burrito",
-        "description": "Breakfast Burritos are a satisfying morning meal featuring savory sausage, scrambled eggs, and melted cheese wrapped in a warm tortilla.",
-        "image": "../static/Images/chicken-and-waffle.webp",
-        "ingredients": [
-          "1/2 lb ground breakfast sausage",
-          "1/4 cup diced onions",
-          "1/4 cup diced bell peppers",
-          "2 cloves garlic, minced",
-          "6 large eggs",
-          "Salt and black pepper to taste",
-          "4 large flour tortillas",
-          "1 cup shredded cheddar cheese",
-          "Hot sauce (optional)",
-          "Salsa and sour cream for serving"
-        ]
-      }
-      
-      
-      
-    
+      "recipe_name": "Chicken Salad",
+      "category": "Lunch",
+      "difficulty": "Beginner",
+      "instructions": [
+        "Step 1: Cook and shred chicken breast.",
+        "Step 2: Mix shredded chicken with mayonnaise, diced celery, and grapes.",
+        "Step 3: Season with salt and pepper to taste.",
+        "Step 4: Serve chilled."
+      ],
+      "time": "15 minutes",
+      "calories": 300,
+      "description": "A simple and delicious chicken salad with a mix of flavors and textures.",
+      "image": "../static/Images/chicken-and-waffle.webp",
+      "ingredients": [
+        "2 cups cooked chicken breast, shredded",
+        "1/2 cup mayonnaise",
+        "1/2 cup diced celery",
+        "1/2 cup grapes, halved",
+        "Salt and pepper to taste"
+      ]
+    },
+    {
+      "recipe_name": "Spaghetti",
+      "category": "Lunch",
+      "difficulty": "Beginner",
+      "instructions": [
+        "Step 1: Cook spaghetti in a large pot of salted boiling water until al dente.",
+        "Step 2: In a skillet, heat olive oil and sauté minced garlic until fragrant.",
+        "Step 3: Add diced tomatoes and tomato sauce to the skillet. Simmer for a few minutes.",
+        "Step 4: Season the sauce with salt, black pepper, and red pepper flakes (adjust to taste).",
+        "Step 5: Toss cooked spaghetti with the sauce and fresh basil leaves.",
+        "Step 6: Serve hot, garnished with grated Parmesan cheese."
+      ],
+      "time": "25 minutes",
+      "calories": 350,
+      "description": "A simple and flavorful spaghetti dish with a homemade tomato sauce and fresh basil.",
+      "image": "../static/Images/chicken-and-waffle.webp",
+      "ingredients": [
+        "8 oz spaghetti",
+        "2 cloves garlic, minced",
+        "1 cup diced tomatoes",
+        "1 cup tomato sauce",
+        "2 tablespoons olive oil",
+        "Salt, black pepper, and red pepper flakes to taste",
+        "Fresh basil leaves for garnish",
+        "Grated Parmesan cheese for garnish"
+      ]
+    },
+    {
+      "recipe_name": "Empanadas",
+      "category": "Dinner",
+      "difficulty": "Intermediate",
+      "instructions": [
+        "Step 1: In a large mixing bowl, combine all-purpose flour, salt, and cold butter. Mix until it forms a crumbly texture.",
+        "Step 2: Gradually add cold water and knead the dough until it's smooth.",
+        "Step 3: Roll out the dough and cut it into circles.",
+        "Step 4: In a separate bowl, mix ground beef, diced onions, hard-boiled eggs, olives, and spices.",
+        "Step 5: Place the filling in the center of each dough circle and fold it in half, sealing the edges.",
+        "Step 6: Brush the empanadas with beaten egg and bake in a preheated oven until golden brown.",
+        "Step 7: Serve hot and enjoy!"
+      ],
+      "time": "50 minutes",
+      "calories": 250,
+      "description": "Empanadas are a delightful Latin American snack with a flavorful beef filling and a flaky pastry crust.",
+      "image": "../static/Images/chicken-and-waffle.webp",
+      "ingredients": [
+        "2 cups all-purpose flour",
+        "1/2 teaspoon salt",
+        "1 cup cold butter, cubed",
+        "1/2 cup cold water",
+        "1/2 lb ground beef",
+        "1/2 cup diced onions",
+        "2 hard-boiled eggs, chopped",
+        "1/4 cup green olives, sliced",
+        "1/2 teaspoon cumin",
+        "Salt and pepper to taste",
+        "1 egg, beaten (for brushing)"
+      ]
+    },
+    {
+      "recipe_name": "Chicken and Waffles",
+      "category": "Breakfast",
+      "difficulty": "Advanced",
+      "instructions": [
+        "Step 1: Preheat your waffle iron according to the manufacturer's instructions.",
+        "Step 2: In a mixing bowl, combine all-purpose flour, sugar, baking powder, and salt.",
+        "Step 3: In a separate bowl, whisk together eggs, buttermilk, and melted butter.",
+        "Step 4: Pour the wet ingredients into the dry ingredients and stir until just combined.",
+        "Step 5: Pour the waffle batter into the preheated waffle iron and cook until golden and crisp.",
+        "Step 6: While the waffles are cooking, season chicken pieces with salt, black pepper, and paprika.",
+        "Step 7: Heat oil in a skillet and fry the chicken until it's crispy and cooked through.",
+        "Step 8: Serve the fried chicken on top of the freshly cooked waffles.",
+        "Step 9: Drizzle with maple syrup and garnish with chopped parsley."
+      ],
+      "time": "30 minutes",
+      "calories": 600,
+      "description": "Chicken and Waffles is a classic Southern dish that combines crispy fried chicken with fluffy waffles, topped with sweet maple syrup.",
+      "image": "../static/Images/chicken-and-waffle.webp",
+      "ingredients": [
+        "1 cup all-purpose flour",
+        "2 tablespoons sugar",
+        "1 teaspoon baking powder",
+        "1/2 teaspoon salt",
+        "2 large eggs",
+        "1 cup buttermilk",
+        "2 tablespoons melted butter",
+        "4 boneless, skinless chicken thighs",
+        "Salt, black pepper, and paprika to taste",
+        "Vegetable oil for frying",
+        "Maple syrup for drizzling",
+        "Chopped parsley for garnish"
+      ]
+    },
+    {
+      "recipe_name": "Eggs Benedict",
+      "category": "Breakfast",
+      "difficulty": "Advanced",
+      "instructions": [
+        "Step 1: Fill a saucepan with a few inches of water and bring it to a simmer.",
+        "Step 2: In a heatproof bowl, whisk together egg yolks, lemon juice, and a pinch of cayenne pepper.",
+        "Step 3: Place the bowl over the simmering water (double boiler) and whisk continuously until the mixture thickens to form a hollandaise sauce. Remove from heat and keep warm.",
+        "Step 4: In a separate saucepan, melt butter over low heat. Skim off and discard the white milk solids from the surface, leaving clarified butter. Keep it warm.",
+        "Step 5: In a skillet, bring water to a gentle simmer and add white vinegar. Create a whirlpool in the water using a spoon and gently slide in an egg. Poach the egg for about 3-4 minutes until the white is set and the yolk is still runny. Repeat for each egg.",
+        "Step 6: Toast English muffin halves until lightly browned.",
+        "Step 7: Place a slice of Canadian bacon on each muffin half, followed by a poached egg.",
+        "Step 8: Spoon hollandaise sauce generously over each egg.",
+        "Step 9: Garnish with chopped chives or parsley.",
+        "Step 10: Serve immediately and enjoy!"
+      ],
+      "time": "20 minutes",
+      "calories": 400,
+      "description": "Eggs Benedict is a classic brunch dish featuring poached eggs, Canadian bacon, and hollandaise sauce served on toasted English muffins.",
+      "image": "../static/Images/chicken-and-waffle.webp",
+      "ingredients": [
+        "4 large egg yolks",
+        "1 tablespoon lemon juice",
+        "A pinch of cayenne pepper",
+        "1/2 cup (1 stick) unsalted butter",
+        "2 teaspoons white vinegar",
+        "4 large eggs",
+        "2 English muffins, split and toasted",
+        "4 slices Canadian bacon",
+        "Chopped chives or parsley for garnish"
+      ]
+    },
+    {
+      "recipe_name": "Breakfast Burritos",
+      "category": "Breakfast",
+      "difficulty": "Intermediate",
+      "instructions": [
+        "Step 1: In a skillet, cook ground breakfast sausage over medium heat until browned and crumbled. Drain excess fat.",
+        "Step 2: Add diced onions, bell peppers, and minced garlic to the skillet. Cook until the vegetables are tender.",
+        "Step 3: In a bowl, whisk together eggs, salt, and black pepper. Pour the egg mixture into the skillet with the sausage and vegetables.",
+        "Step 4: Cook, stirring occasionally, until the eggs are scrambled and fully cooked.",
+        "Step 5: Warm the flour tortillas in a dry skillet or microwave until pliable.",
+        "Step 6: Place a portion of the egg and sausage mixture in the center of each tortilla.",
+        "Step 7: Sprinkle shredded cheese over the egg mixture and drizzle with hot sauce (if desired).",
+        "Step 8: Fold in the sides of the tortilla and then roll it up tightly to form a burrito.",
+        "Step 9: Serve the breakfast burritos with salsa and sour cream on the side.",
+        "Step 10: Enjoy your delicious breakfast burritos!"
+      ],
+      "time": "20 minutes",
+      "calories": 350,
+      "description": "Breakfast Burritos are a satisfying morning meal featuring savory sausage, scrambled eggs, and melted cheese wrapped in a warm tortilla.",
+      "image": "../static/Images/chicken-and-waffle.webp",
+      "ingredients": [
+        "1/2 lb ground breakfast sausage",
+        "1/4 cup diced onions",
+        "1/4 cup diced bell peppers",
+        "2 cloves garlic, minced",
+        "6 large eggs",
+        "Salt and black pepper to taste",
+        "4 large flour tortillas",
+        "1 cup shredded cheddar cheese",
+        "Hot sauce (optional)",
+        "Salsa and sour cream for serving"
+      ]
+    }
   ]
-} 
+}
