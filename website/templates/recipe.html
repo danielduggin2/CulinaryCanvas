@@ -132,7 +132,7 @@
     <li>Description: {{ recipe.description }}</li>
     <li>Cooking Time: {{ recipe.hours }} hrs {{ recipe.minutes }} mins</li>
     <li>Calories: {{ recipe.calories }}</li>
-    <li>Ingredients: {{ recipe.ingredients }}</li>
+    <li>Ingredients: {{ ingredients | join(', ') }}</li>
     <li>Instructions: {{ recipe.instructions }}</li>
     <li>Difficulty: {{ recipe.difficulty }} Category: {{ recipe.category }}</li>
     <li>Submitted by user: {{ recipe.user_id }}</li>

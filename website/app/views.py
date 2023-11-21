@@ -1,3 +1,4 @@
+import json
 from flask import (
     Blueprint,
     render_template,
@@ -131,56 +132,65 @@ def recipe_edit(recipe_id):
     else:
         return redirect(url_for("views.recipe", recipe_id=recipe_id))
 
+import json
 
 @views.route("/recipe/<int:recipe_id>", methods=["GET", "POST"])
 @login_required
 def recipe(recipe_id):
-    recipe = Recipe.query.get(recipe_id)
-    reviews = recipe.reviews
-    # create dictionary ready to store array of recipes
+    recipe_obj = Recipe.query.get(recipe_id)  # Use a different name like 'recipe_obj'
+    reviews = recipe_obj.reviews
+
+    if recipe_obj.ingredients:
+        ingredients_list = recipe_obj.ingredients.split('¦')
+    else:
+        ingredients_list = []
 
     rating_float = (
         Recipe.query.with_entities(func.avg(Review.stars).label("average"))
         .filter(Review.recipe_id == recipe_id)
         .scalar()
     )
-    if rating_float:
-        rating = round(rating_float)
-    else:
-        rating = 0
-    # iterate through recipe_query, and assign db values to dictionary values for frontend
-    # each column name defined in the models is the column name in SQL
-    favorited = "true" if (current_user in recipe.users_who_favorited) else None
-    recipe = {
-        "id": recipe.id,
-        "user_id": recipe.user_id,
-        "username": recipe.user.username,
-        "name": recipe.name,
-        "instructions": recipe.instructions,
-        "hours": recipe.hours_to_make,
-        "minutes": recipe.minutes_to_make,
-        "calories": recipe.calories,
-        "description": recipe.description,
-        "image": recipe.image,
-        "ingredients": recipe.ingredients,
-        "category_id": recipe.category_id,
+    rating = round(rating_float) if rating_float else 0
+    favorited = "true" if current_user in recipe_obj.users_who_favorited else None
+
+    # Create a dictionary with recipe data
+    recipe_data = {
+        "id": recipe_obj.id,
+        "user_id": recipe_obj.user_id,
+        "username": recipe_obj.user.username,
+        "name": recipe_obj.name,
+        "instructions": recipe_obj.instructions,
+        "hours": recipe_obj.hours_to_make,
+        "minutes": recipe_obj.minutes_to_make,
+        "calories": recipe_obj.calories,
+        "description": recipe_obj.description,
+        "image": recipe_obj.image,
+        "ingredients": ingredients_list,  # Use the ingredients_list here
+        "category_id": recipe_obj.category_id,
         "favorited": favorited,
-        "category": recipe.category.name,
-        "difficulty": recipe.difficulty.difficulty,
+        "category": recipe_obj.category.name,
+        "difficulty": recipe_obj.difficulty.difficulty,
         "rating": rating,
     }
+
+    # Prepare review data
     review_json = {"reviews": []}
     for review in reviews:
         user = User.query.get(review.user_id)
-        thisdict = {
+        review_dict = {
             "user_id": review.user_id,
             "username": user.username,
             "stars": review.stars,
             "review": review.review,
         }
-        review_json["reviews"].append(thisdict)
-        # append dicionary to list in recipes dictionary
-    return render_template("recipe.html", recipe=recipe, reviews=review_json)
+        review_json["reviews"].append(review_dict)
+        
+    # Pass the recipe_data dictionary to the template
+    return render_template("recipe.html", recipe=recipe_data, ingredients=ingredients_list, reviews=review_json)
+
+
+
+
 
 
 # Oct 25 - Added Route for About Page
@@ -296,40 +306,26 @@ def create():
         calories = request.form.get("calories")
         description = request.form.get("description")
         image = request.form.get("image")
-        ingredients = request.form.get("ingredients")
-        category_id = request.form.get("category_id")
-        difficulty_id = request.form.get("difficulty_id")
+        ingredients_list = request.form.getlist("ingredients[]")
 
-        # split the lists of instructions and ingredients by the delimiter (temporary solution until tag input is set up)
+        # Use '¦' as the delimiter to join ingredients
+        ingredients_string = '¦'.join(ingredients_list)
+
+        # split the list of instructions
         instruction_list = instructions.split("|")
-        ingredient_list = ingredients.split("|")
+        instructions_string = "|".join(instruction_list)
 
-        instructions_string = ""
-        ingredient_string = ""
-
-        # populate our strings with the array data, separated by delimeters (temporary solution until tag input is set up)
-        for i, instruction in enumerate(instruction_list):
-            instructions_string = instructions_string + instruction
-            if i < len(instruction_list) - 1:
-                instructions_string = instructions_string + "|"
-
-        for i, ingredient in enumerate(ingredient_list):
-            ingredient_string = ingredient_string + ingredient
-            if i < len(ingredient_list) - 1:
-                ingredient_string = ingredient_string + "|"
-
-        # creating instance of a class and passing parameters, default value auto increments
-        # getting back an array of objects
+        # creating instance of Recipe and passing parameters
         new_recipe = Recipe(
             user_id=current_user.id,
             name=name,
-            instructions=instructions,
+            instructions=instructions_string,
             hours_to_make=hours_to_make,
             minutes_to_make=minutes_to_make,
             calories=calories,
             description=description,
             image=image,
-            ingredients=ingredients,
+            ingredients=ingredients_string,  # Updated ingredients string
             category_id=category_id,
             difficulty_id=difficulty_id,
         )
@@ -338,6 +334,7 @@ def create():
         db.session.commit()
         return redirect(url_for("views.recipe", recipe_id=new_recipe.id))
     return render_template("create.html")
+
 
 
 # route for profile (profile icon is the button for it)
