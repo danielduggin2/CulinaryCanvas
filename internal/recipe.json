@@ -71,7 +71,7 @@
       "time": "15 minutes",
       "calories": 300,
       "description": "A simple and delicious chicken salad with a mix of flavors and textures.",
-      "image": "../static/Images/chicken-and-waffle.webp",
+      "image": "../static/Images/chicken-salad.webp",
       "ingredients": [
         "2 cups cooked chicken breast, shredded",
         "1/2 cup mayonnaise",
@@ -95,7 +95,7 @@
       "time": "25 minutes",
       "calories": 350,
       "description": "A simple and flavorful spaghetti dish with a homemade tomato sauce and fresh basil.",
-      "image": "../static/Images/chicken-and-waffle.webp",
+      "image": "../static/Images/spaghetti.jpeg",
       "ingredients": [
         "8 oz spaghetti",
         "2 cloves garlic, minced",
@@ -123,7 +123,7 @@
       "time": "50 minutes",
       "calories": 250,
       "description": "Empanadas are a delightful Latin American snack with a flavorful beef filling and a flaky pastry crust.",
-      "image": "../static/Images/chicken-and-waffle.webp",
+      "image": "../static/Images/empanadas.webp",
       "ingredients": [
         "2 cups all-purpose flour",
         "1/2 teaspoon salt",
@@ -191,7 +191,7 @@
       "time": "20 minutes",
       "calories": 400,
       "description": "Eggs Benedict is a classic brunch dish featuring poached eggs, Canadian bacon, and hollandaise sauce served on toasted English muffins.",
-      "image": "../static/Images/chicken-and-waffle.webp",
+      "image": "../static/Images/Egg-Benedict.jpeg",
       "ingredients": [
         "4 large egg yolks",
         "1 tablespoon lemon juice",
@@ -223,7 +223,7 @@
       "time": "20 minutes",
       "calories": 350,
       "description": "Breakfast Burritos are a satisfying morning meal featuring savory sausage, scrambled eggs, and melted cheese wrapped in a warm tortilla.",
-      "image": "../static/Images/chicken-and-waffle.webp",
+      "image": "../static/Images/break-burrito.jpeg",
       "ingredients": [
         "1/2 lb ground breakfast sausage",
         "1/4 cup diced onions",
@@ -252,7 +252,7 @@
       "time": "30 minutes",
       "calories": 600,
       "description": "A creamy pasta dish with tender chicken, fettuccine, and a rich Alfredo sauce.",
-      "image": "../static/Images/chicken-and-waffle.webp",
+      "image": "../static/Images/Chicken-Alfredo.jpeg",
       "ingredients": [
         "12 oz fettuccine",
         "1.5 lbs chicken breasts, diced",
@@ -279,7 +279,7 @@
       "time": "25 minutes",
       "calories": 400,
       "description": "A classic Margherita pizza with fresh tomatoes, mozzarella, and basil.",
-      "image": "../static/Images/chicken-and-waffle.webp",
+      "image": "../static/Images/marg-pizza.jpeg",
       "ingredients": [
         "1 lb pizza dough",
         "1/2 cup tomato sauce",
@@ -305,7 +305,7 @@
       "time": "15 minutes",
       "calories": 350,
       "description": "A simple and healthy breakfast featuring creamy avocado and a perfectly poached egg on whole-grain toast.",
-      "image": "../static/Images/chicken-and-waffle.webp",
+      "image": "../static/Images/avocado-toast.jpeg",
       "ingredients": [
         "4 slices whole-grain bread",
         "2 ripe avocados",
@@ -329,7 +329,7 @@
       "time": "30 minutes",
       "calories": 450,
       "description": "Fluffy pancakes bursting with juicy blueberries, perfect for a delightful breakfast.",
-      "image": "../static/Images/chicken-and-waffle.webp",
+      "image": "../static/Images/blueberry-panckaes.jpeg",
       "ingredients": [
         "2 cups all-purpose flour",
         "2 tbsp sugar",
@@ -356,7 +356,7 @@
       "time": "45 minutes",
       "calories": 550,
       "description": "A luxurious and flavorful breakfast dish featuring smoked salmon, perfectly poached eggs, and a rich hollandaise sauce.",
-      "image": "../static/Images/chicken-and-waffle.webp",
+      "image": "../static/Images/smoked-salmon.jpeg",
       "ingredients": [
         "4 English muffins, split and toasted",
         "8 oz smoked salmon",
@@ -381,7 +381,7 @@
       "time": "50 minutes",
       "calories": 400,
       "description": "A hearty and colorful salad featuring quinoa, roasted vegetables, feta cheese, and a zesty lemon-tahini dressing.",
-      "image": "../static/Images/chicken-and-waffle.webp",
+      "image": "../static/Images/roasted-veggie-quinoa.jpeg",
       "ingredients": [
         "1 cup quinoa",
         "2 cups mixed vegetables (bell peppers, zucchini, cherry tomatoes)",
@@ -407,7 +407,7 @@
       "time": "2 hours",
       "calories": 800,
       "description": "A classic and impressive dish featuring beef tenderloin, prosciutto, and puff pastry, baked to perfection.",
-      "image": "../static/Images/chicken-and-waffle.webp",
+      "image": "../static/Images/beef-wellington.jpeg",
       "ingredients": [
         "2 lbs beef tenderloin",
         "Salt and black pepper to taste",
