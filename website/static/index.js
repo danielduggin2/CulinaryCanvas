@@ -86,7 +86,7 @@ function render_recipes(recipes) {
           `
           <div class="recipe-card">
               <img
-              src="../static/Images/chicken-and-waffle.webp"
+              src="${recipe.image}"
               alt="chicken-and-waffle"
               />
               <div class="recipe-details" date-category="">
