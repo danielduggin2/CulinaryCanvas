@@ -14,6 +14,7 @@ INSERT INTO difficulty (id, difficulty) VALUES(1, 'Beginner');
 INSERT INTO difficulty (id, difficulty) VALUES(2, 'Intermediate');
 INSERT INTO difficulty (id, difficulty) VALUES(3, 'Advanced');
 
+--INSERT RECIPES
 INSERT INTO recipe (user_id, name, instructions, hours_to_make, minutes_to_make, calories, description, image, ingredients, category_id, difficulty_id)
 VALUES 
 (1,"Spaghetti Carbonara","Step 1: Cook spaghetti in a large pot of salted boiling water until al dente.¦Step 2: In a bowl, whisk together eggs, grated Pecorino Romano cheese, and black pepper.¦Step 3: In a skillet, cook diced pancetta until crispy.¦Step 4: Add cooked spaghetti to the skillet with pancetta and toss to combine.¦Step 5: Remove from heat and quickly stir in the egg and cheese mixture.¦Step 6: Serve immediately, garnished with more cheese and black pepper.",0,20,450,"A classic Italian pasta dish made with eggs, Pecorino Romano cheese, pancetta, and black pepper.","../static/Images/spaghetti-carbonara.jpeg","8 oz spaghetti¦3 large eggs¦1 cup grated Pecorino Romano cheese¦4 oz diced pancetta¦Salt and black pepper to taste",3,1),
