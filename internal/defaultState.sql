@@ -1,4 +1,9 @@
 
+--INSERTING USER
+INSERT INTO "user"
+(id, username, email, password, first_name, last_name)
+VALUES(1, 'admin', 'admin1@gmail.com', 'sha256$oBgJRJIajQTsgjRV$eeb764ccce2678b3788987258307f1f552b8e4b19c6c75003302bfe3f8a43c1f', 'Admin', 'User');
+
 --INSERT CATEGORIES
 INSERT INTO category (id, name) VALUES(1, 'Breakfast');
 INSERT INTO category (id, name) VALUES(2, 'Lunch');
