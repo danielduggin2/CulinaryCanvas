@@ -15,6 +15,7 @@ from flask_login import login_required, current_user
 import json
 from sqlalchemy import and_, or_, select
 from sqlalchemy.sql import func
+import os
 
 views = Blueprint("views", __name__)
 
@@ -309,7 +310,8 @@ def create():
         ingredients_list = request.form.getlist("ingredients[]")
         category_id = request.form.get("category_id")
         difficulty_id = request.form.get("difficulty_id")
-
+        img = request.files.get("img")
+        img.save(os.path.join("website/static/Images/",img.filename))
         # Use '¦' as the delimiter to join ingredients
         ingredients_string = '¦'.join(ingredients_list)
         # split the list of instructions
@@ -325,7 +327,7 @@ def create():
             minutes_to_make=minutes_to_make,
             calories=calories,
             description=description,
-            image=image,
+            image=img.filename,
             ingredients=ingredients_string,  # Updated ingredients string
             category_id=category_id,
             difficulty_id=difficulty_id,

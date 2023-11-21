@@ -2,7 +2,7 @@
 {% block content %}
 <div class="create-container">
   <h2>Create Recipe</h2>
-  <form id="recipeForm" method="POST" action="/create" class="recipe-form">
+  <form id="recipeForm" method="POST" action="/create" class="recipe-form" enctype="multipart/form-data">
     <div class="form-group">
       <label for="name">Recipe Name:</label>
       <input type="text" id="name" name="name" required /><br /><br />
@@ -56,8 +56,8 @@
     <!--changed calories to only accept 0 and positive integer values. may need make it only accept positive since food can't have 0 calories-->
 
     <div class="form-group">
-      <label for="image">Image URL:</label>
-      <input type="text" id="image" name="image" />
+      <label for="image">Image:</label>
+      <input type="file" id="img" name="img" accept="image/*">
     </div>
 
     <div class="form-group">
