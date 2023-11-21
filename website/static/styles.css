@@ -138,8 +138,9 @@ body {
 }
 
 .recipe-card img {
-  max-width: 100%;
-  height: auto;
+  width: 250px;
+  height: 150px;
+  object-fit: cover;
   border-radius: 15px; /* Increased border radius */
 }
 
