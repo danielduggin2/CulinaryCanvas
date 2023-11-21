@@ -344,7 +344,35 @@ def create():
 @views.route("/profile")
 @login_required
 def profile():
-    return render_template("profile.html", user=current_user)
+    recipe_query = select(Recipe).where(Recipe.user_id == current_user.id)
+
+    recipe_query = db.session.execute(recipe_query).scalars()
+
+    recipe_json = {"recipes": []}
+    # iterate through recipe_query, and assign db values to dictionary values for frontend
+    # each column name defined in the models is the column name in SQL
+    for recipe in recipe_query:
+        favorited = "true" if (current_user in recipe.users_who_favorited) else None
+        thisdict = {
+            "id": recipe.id,
+            "user_id": recipe.user_id,
+            "name": recipe.name,
+            "instructions": recipe.instructions,
+            "hours": recipe.hours_to_make,
+            "minutes": recipe.minutes_to_make,
+            "calories": recipe.calories,
+            "description": recipe.description,
+            "image": recipe.image,
+            "ingredients": recipe.ingredients,
+            "category_id": recipe.category_id,
+            "favorited": favorited,
+            "category": recipe.category.name,
+            "difficulty": recipe.difficulty.difficulty,
+        }
+        # append dicionary to list in recipes dictionary
+        recipe_json["recipes"].append(thisdict)
+
+    return render_template("profile.html", user=current_user, recipes=recipe_json )
 
 
 # route for profile (profile icon is the button for it)
