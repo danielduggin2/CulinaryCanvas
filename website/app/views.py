@@ -327,7 +327,7 @@ def create():
             minutes_to_make=minutes_to_make,
             calories=calories,
             description=description,
-            image=img.filename,
+            image="../static/Images/"+img.filename,
             ingredients=ingredients_string,  # Updated ingredients string
             category_id=category_id,
             difficulty_id=difficulty_id,
