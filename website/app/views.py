@@ -307,10 +307,11 @@ def create():
         description = request.form.get("description")
         image = request.form.get("image")
         ingredients_list = request.form.getlist("ingredients[]")
+        category_id = request.form.get("category_id")
+        difficulty_id = request.form.get("difficulty_id")
 
         # Use '¦' as the delimiter to join ingredients
         ingredients_string = '¦'.join(ingredients_list)
-
         # split the list of instructions
         instruction_list = instructions.split("|")
         instructions_string = "|".join(instruction_list)
