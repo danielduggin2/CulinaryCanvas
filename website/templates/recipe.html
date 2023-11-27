@@ -127,7 +127,11 @@
         <i class="fa-regular fa-star" value="5"></i>
       </div>
     </li>
-    <li>{{recipe.image}}</li>
+    <li>
+      <div class="image-container">
+        <img src={{recipe.image}} alt="Recipe Image">
+      </div>
+    </li>
     <li>{{ recipe.name }}</li>
     <li>Description: {{ recipe.description }}</li>
     <li>Cooking Time: {{ recipe.hours }} hrs {{ recipe.minutes }} mins</li>
