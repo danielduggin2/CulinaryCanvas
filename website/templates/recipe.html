@@ -1,9 +1,115 @@
 {%extends "base.html"%} {%block content%}
-<link rel="stylesheet" href="../static/recipe.css">
 <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
 />
+
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+  }
+
+  .recipe-info-container {
+    margin-top: 150px;
+    max-width: 800px;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fdfdfd;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+
+  .info-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .info-list li {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .info-list li:not(:first-child) {
+    border-top: 1px solid #eaeaea;
+  }
+
+  .info-list li:first-child {
+    text-align: center;
+  }
+
+  a {
+    text-decoration: none;
+    color: #3498db;
+    font-weight: bold;
+  }
+
+  .rating-icon {
+    font-size: 24px;
+    color: #ffcc00;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+
+  .review-container {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .reviewbox {
+    display: flex;
+  }
+
+  #review {
+    width: 100%;
+    padding: 10px;
+    margin-left: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  button[type="submit"] {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #2980b9;
+  }
+
+  @media (max-width: 768px) {
+    .recipe-info-container {
+      padding: 10px;
+    }
+
+    .info-list li {
+      font-size: 14px;
+    }
+
+    .review-container {
+      flex-direction: column;
+    }
+
+    #review {
+      margin-left: 0;
+      margin-top: 10px;
+    }
+  }
+</style>
 
 <div class="recipe-info-container">
   {% if current_user.id == recipe.user_id %}
@@ -21,15 +127,23 @@
         <i class="fa-regular fa-star" value="5"></i>
       </div>
     </li>
-    <li>{{recipe.image}}</li>
+    
+    <img src="{{recipe.image}}" />
     <li>{{ recipe.name }}</li>
     <li>Description: {{ recipe.description }}</li>
     <li>Cooking Time: {{ recipe.hours }} hrs {{ recipe.minutes }} mins</li>
     <li>Calories: {{ recipe.calories }}</li>
     <li>Ingredients: {{ ingredients | join(', ') }}</li>
-    <li>Instructions: {{ recipe.instructions }}</li>
+    <li>
+      <strong>Instructions:</strong>
+      <li>
+        {% for instruction in instructions %}
+          <li>{{ instruction }}</li>
+        {% endfor %}
+    </li>
+    </li>
     <li>Difficulty: {{ recipe.difficulty }} Category: {{ recipe.category }}</li>
-    <li>Submitted by user: {{ recipe.username }}</li>
+    <li>Submitted by user: {{ recipe.user_id }}</li>
   </ul>
 
   <form action="/review" method="POST">
