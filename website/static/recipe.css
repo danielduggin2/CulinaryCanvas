@@ -18,6 +18,20 @@ body {
   padding: 0;
 }
 
+.info-list .image-container img {
+  max-width: 100% !important;
+  height: auto !important;
+  object-fit: cover !important;
+}
+
+.info-list img {
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  border-radius: 15px; 
+}
+
+
 .info-list li {
   margin: 10px 0;
   padding: 10px;
