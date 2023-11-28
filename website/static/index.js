@@ -31,10 +31,10 @@ function startupFunction() {
         }
       });
     });
-    let rating_div_value = document.querySelector(".rating").getAttribute("value");
+    let rating_div_value = document.querySelector(".rating");
     let div = document.querySelectorAll(".rating > .fa-star");
     div.forEach((star) => {
-      if (star.getAttribute("value") <= rating_div_value){
+      if (star.getAttribute("value") <= rating_div_value.getAttribute("value")){
         star.classList.add("fa-regular");
         star.classList.add("fa-solid");
       }
