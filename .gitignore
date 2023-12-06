@@ -1,5 +1,3 @@
-website/app/__pycache__/
-internal/populateRecipes.sql
 .vscode/
 instance/
-website/app/__pycache__
+flask_project/__pycache__
