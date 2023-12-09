@@ -137,6 +137,12 @@ def recipe(recipe_id):
     else:
         ingredients_list = []
 
+    if recipe_obj.instructions:
+        instructions_list = recipe_obj.instructions.split('¦')
+    else:
+        instructions_list = []
+    print(ingredients_list)
+    print(instructions_list)
     rating_float = (
         Recipe.query.with_entities(func.avg(Review.stars).label("average"))
         .filter(Review.recipe_id == recipe_id)
@@ -144,14 +150,13 @@ def recipe(recipe_id):
     )
     rating = round(rating_float) if rating_float else 0
     favorited = "true" if current_user in recipe_obj.users_who_favorited else None
-
     # Create a dictionary with recipe data
     recipe_data = {
         "id": recipe_obj.id,
         "user_id": recipe_obj.user_id,
         "username": recipe_obj.user.username,
         "name": recipe_obj.name,
-        "instructions": recipe_obj.instructions,
+        "instructions": instructions_list,
         "hours": recipe_obj.hours_to_make,
         "minutes": recipe_obj.minutes_to_make,
         "calories": recipe_obj.calories,
@@ -178,7 +183,7 @@ def recipe(recipe_id):
         review_json["reviews"].append(review_dict)
         
     # Pass the recipe_data dictionary to the template
-    return render_template("recipe.html", recipe=recipe_data, ingredients=ingredients_list, reviews=review_json)
+    return render_template("recipe.html", recipe=recipe_data,reviews=review_json)
 
 
 

@@ -152,14 +152,19 @@
     <li>Description: {{ recipe.description }}</li>
     <li>Cooking Time: {{ recipe.hours }} hrs {{ recipe.minutes }} mins</li>
     <li>Calories: {{ recipe.calories }}</li>
-    <li>Ingredients: {{ ingredients | join(', ') }}</li>
-    <li>
-      <strong>Instructions:</strong>
-      <li>
-        {% for instruction in instructions %}
-          <li>{{ instruction }}</li>
-        {% endfor %}
+    <li>Ingredients:
+    </br>
+    {%for ingredient in recipe.ingredients%}
+    {{ingredient}}</br>
+    {%endfor%}
     </li>
+    <li>Instructions:
+    </br>
+    {%for instruction in recipe.instructions%}
+    {{instruction}}</br>
+    {%endfor%}
+    </li>
+    <li>Instructions: {{ recipe.instructions | join(', ') }}</li>
     </li>
     <li>Difficulty: {{ recipe.difficulty }} Category: {{ recipe.category }}</li>
     <li>Submitted by user: {{ recipe.user_id }}</li>
