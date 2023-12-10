@@ -307,7 +307,7 @@ def create():
         category_id = request.form.get("category_id")
         difficulty_id = request.form.get("difficulty_id")
         img = request.files.get("img")
-        img.save(os.path.join("website/static/Images/",img.filename))
+        img.save(os.path.join("flask_project/static/Images/",img.filename))
         # Use '¦' as the delimiter to join ingredients
         ingredients_string = '¦'.join(ingredients_list)
         # split the list of instructions
