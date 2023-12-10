@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="../static/edit.css">
 <div class="create-container">
   <h2>Edit Recipe</h2>
-  <form method="POST" action="/recipe/{{ recipe.id }}/edit" class="edit-recipe-form">
+  <form method="POST" action="/edit/{{ recipe.id }}" class="edit-recipe-form">
     <div class="form-group">
       <label for="name">Recipe Name:</label>
       <input type="text" id="name" name="name" required value="{{ recipe.name }}" />

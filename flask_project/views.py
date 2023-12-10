@@ -123,7 +123,19 @@ def recipe_edit(recipe_id):
         return render_template("edit.html", recipe=recipe)
     else:
         return redirect(url_for("views.recipe", recipe_id=recipe_id))
-
+    
+@views.route("/delete/<int:recipe_id>", methods=["GET"])
+@login_required
+def recipe_delete(recipe_id):
+    recipe = Recipe.query.get(recipe_id)
+    if recipe.user_id == current_user.id:
+            db.session.delete(recipe)
+            db.session.commit()
+            print()
+            return redirect(url_for("views.profile"))
+    else:
+        return redirect(url_for("views.profile"))
+    
 import json
 
 @views.route("/recipe/<int:recipe_id>", methods=["GET", "POST"])
