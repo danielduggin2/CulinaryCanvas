@@ -131,7 +131,6 @@ def recipe_delete(recipe_id):
     if recipe.user_id == current_user.id:
             db.session.delete(recipe)
             db.session.commit()
-            print()
             return redirect(url_for("views.profile"))
     else:
         return redirect(url_for("views.profile"))
