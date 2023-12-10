@@ -128,12 +128,9 @@ def recipe_edit(recipe_id):
 @login_required
 def recipe_delete(recipe_id):
     recipe = Recipe.query.get(recipe_id)
-    if recipe.user_id == current_user.id:
-            db.session.delete(recipe)
-            db.session.commit()
-            return redirect(url_for("views.profile"))
-    else:
-        return redirect(url_for("views.profile"))
+    db.session.delete(recipe)
+    db.session.commit()
+    return redirect(url_for("views.profile"))
     
 import json
 
